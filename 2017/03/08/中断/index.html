@@ -15,13 +15,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yzlong-Blog">
-<meta property="og:url" content="http://cryzlasm.github.io/tags/Kernel/index.html">
+<meta name="description" content="用int xx调用中断,从 三环 进入 0环操作门用 Iret 操作 进行从 0环 返回 三环    中断调用过程: 3环 传入API的下标 -&amp;gt; 调用 int 2E 切换到0环 -&amp;gt;在2E中断中 派发函数 (call FunAry[eax]的形式调用相应的系统API) -&amp;gt;进行API调用之后, 利用iRet 返回三环">
+<meta name="keywords" content="Kernel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中断">
+<meta property="og:url" content="http://cryzlasm.github.io/2017/03/08/中断/index.html">
 <meta property="og:site_name" content="Yzlong-Blog">
+<meta property="og:description" content="用int xx调用中断,从 三环 进入 0环操作门用 Iret 操作 进行从 0环 返回 三环    中断调用过程: 3环 传入API的下标 -&amp;gt; 调用 int 2E 切换到0环 -&amp;gt;在2E中断中 派发函数 (call FunAry[eax]的形式调用相应的系统API) -&amp;gt;进行API调用之后, 利用iRet 返回三环">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://cryzlasm.github.io/2017/03/08/中断/Normal.png">
+<meta property="og:image" content="http://cryzlasm.github.io/2017/03/08/中断/Gate.png">
+<meta property="og:updated_time" content="2018-02-04T18:36:32.737Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yzlong-Blog">
+<meta name="twitter:title" content="中断">
+<meta name="twitter:description" content="用int xx调用中断,从 三环 进入 0环操作门用 Iret 操作 进行从 0环 返回 三环    中断调用过程: 3环 传入API的下标 -&amp;gt; 调用 int 2E 切换到0环 -&amp;gt;在2E中断中 派发函数 (call FunAry[eax]的形式调用相应的系统API) -&amp;gt;进行API调用之后, 利用iRet 返回三环">
+<meta name="twitter:image" content="http://cryzlasm.github.io/2017/03/08/中断/Normal.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -53,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Tag: Kernel | Yzlong-Blog</title>
+<title>中断 | Yzlong-Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,9 +71,9 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
-        isTag: true,
+        isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
@@ -262,132 +270,200 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-中断" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/02/04/未公开API的使用/" class="archive-article-date">
-      <time datetime="2018-02-04T08:54:42.000Z" itemprop="datePublished">02-04</time>
+    <div class="article-meta">
+      <a href="/2017/03/08/中断/" class="article-date">
+      <time datetime="2017-03-08T08:00:00.000Z" itemprop="datePublished">2017-03-08</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/04/未公开API的使用/">未公开API的使用</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      中断
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>用<code>int xx</code>调用中断,从 三环 进入 0环操作<br>门用 <code>Iret</code> 操作 进行从 0环 返回 三环  </p>
+</blockquote>
+<h2 id="中断调用过程"><a href="#中断调用过程" class="headerlink" title="中断调用过程:"></a>中断调用过程:</h2><blockquote>
+<p>3环 传入<code>API</code>的下标 -&gt; 调用 <code>int 2E</code> 切换到0环 -&gt;<br>在<code>2E</code>中断中 派发函数 (<code>call FunAry[eax]</code>的形式调用相应的系统API) -&gt;<br>进行API调用之后, 利用<code>iRet</code> 返回三环<br><a id="more"></a></p>
+<h2 id="中断调用实现"><a href="#中断调用实现" class="headerlink" title="中断调用实现"></a>中断调用实现</h2><p><code>int</code> 调用中断时, Push 保存 CS,SS, ESP,EIP,EFlags<br><code>IRet</code>返回三环时,Pop 还原 以上寄存器</p>
+</blockquote>
+<h2 id="常用中断向量号-256项"><a href="#常用中断向量号-256项" class="headerlink" title="常用中断向量号(256项):"></a>常用中断向量号(256项):</h2><p><img src="Normal.png" alt="常用中断"></p>
+<h2 id="中段表的利用"><a href="#中段表的利用" class="headerlink" title="中段表的利用"></a>中段表的利用</h2><blockquote>
+<p><code>0x2A</code> 项: <code>GetTickCount</code> Hook此函数,可实现全局加速<br><code>0x93</code>项: 键盘的中断,可以获取键盘的扫描码</p>
+</blockquote>
+<h2 id="中断描述符表格式"><a href="#中断描述符表格式" class="headerlink" title="中断描述符表格式"></a>中断描述符表格式</h2><p><img src="Gate.png" alt="中断描述符表格式"></p>
+<blockquote>
+<p><code>MSR</code> : <code>rdmsr</code> / <code>wrmsr</code></p>
+</blockquote>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h2><blockquote>
+<p>在<code>int 2E</code> 处 进行Hook 可以监控整个系统的API 调用</p>
+</blockquote>
+<h3 id="WinDBG命令"><a href="#WinDBG命令" class="headerlink" title="WinDBG命令:"></a>WinDBG命令:</h3><blockquote>
+<p><code>!idt</code> 显示中段表<br><code>!idt -a</code>  显示所有中段表</p>
+<p><code>KV</code> 显示栈</p>
+</blockquote>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/16/强删文件/" class="archive-article-date">
-      <time datetime="2017-03-16T07:00:00.000Z" itemprop="datePublished">03-16</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/16/强删文件/">强删文件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/08/中断/">中断</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yzlong</a></p>
+        <p><span>发布时间:</span>2017-03-08, 00:00:00</p>
+        <p><span>最后更新:</span>2018-02-04, 10:36:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/08/中断/" title="中断">http://cryzlasm.github.io/2017/03/08/中断/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://cryzlasm.github.io/2017/03/08/中断/　　作者: Yzlong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/03/16/强删文件/">
+                    强删文件
+                </a>
+            </div>
+        
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/08/中断/" class="archive-article-date">
-      <time datetime="2017-03-08T08:00:00.000Z" itemprop="datePublished">03-08</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#中断调用过程"><span class="toc-number">1.</span> <span class="toc-text">中断调用过程:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中断调用实现"><span class="toc-number">2.</span> <span class="toc-text">中断调用实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用中断向量号-256项"><span class="toc-number">3.</span> <span class="toc-text">常用中断向量号(256项):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中段表的利用"><span class="toc-number">4.</span> <span class="toc-text">中段表的利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中断描述符表格式"><span class="toc-number">5.</span> <span class="toc-text">中断描述符表格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">6.</span> <span class="toc-text">Tips:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WinDBG命令"><span class="toc-number">6.1.</span> <span class="toc-text">WinDBG命令:</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/08/中断/">中断</a>
-    </h1>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"中断　| Yzlong-Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-        <div class="article-info info-on-archive">
-          
+    
+</div>
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
+
+
+
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2157184';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/03/16/强删文件/" title="上一篇: 强删文件">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/04/未公开API的使用/">未公开API的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/强删文件/">强删文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/中断/">中断</a></li></ul>
 
-    
 
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

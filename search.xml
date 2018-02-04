@@ -158,6 +158,43 @@
         
     </entry>
     
+    <entry>
+      <title><![CDATA[中断]]></title>
+      <url>/2017/03/08/%E4%B8%AD%E6%96%AD/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>用<code>int xx</code>调用中断,从 三环 进入 0环操作<br>门用 <code>Iret</code> 操作 进行从 0环 返回 三环  </p>
+</blockquote>
+<h2 id="中断调用过程"><a href="#中断调用过程" class="headerlink" title="中断调用过程:"></a>中断调用过程:</h2><blockquote>
+<p>3环 传入<code>API</code>的下标 -&gt; 调用 <code>int 2E</code> 切换到0环 -&gt;<br>在<code>2E</code>中断中 派发函数 (<code>call FunAry[eax]</code>的形式调用相应的系统API) -&gt;<br>进行API调用之后, 利用<code>iRet</code> 返回三环<br><a id="more"></a></p>
+<h2 id="中断调用实现"><a href="#中断调用实现" class="headerlink" title="中断调用实现"></a>中断调用实现</h2><p><code>int</code> 调用中断时, Push 保存 CS,SS, ESP,EIP,EFlags<br><code>IRet</code>返回三环时,Pop 还原 以上寄存器</p>
+</blockquote>
+<h2 id="常用中断向量号-256项"><a href="#常用中断向量号-256项" class="headerlink" title="常用中断向量号(256项):"></a>常用中断向量号(256项):</h2><p><img src="Normal.png" alt="常用中断"></p>
+<h2 id="中段表的利用"><a href="#中段表的利用" class="headerlink" title="中段表的利用"></a>中段表的利用</h2><blockquote>
+<p><code>0x2A</code> 项: <code>GetTickCount</code> Hook此函数,可实现全局加速<br><code>0x93</code>项: 键盘的中断,可以获取键盘的扫描码</p>
+</blockquote>
+<h2 id="中断描述符表格式"><a href="#中断描述符表格式" class="headerlink" title="中断描述符表格式"></a>中断描述符表格式</h2><p><img src="Gate.png" alt="中断描述符表格式"></p>
+<blockquote>
+<p><code>MSR</code> : <code>rdmsr</code> / <code>wrmsr</code></p>
+</blockquote>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h2><blockquote>
+<p>在<code>int 2E</code> 处 进行Hook 可以监控整个系统的API 调用</p>
+</blockquote>
+<h3 id="WinDBG命令"><a href="#WinDBG命令" class="headerlink" title="WinDBG命令:"></a>WinDBG命令:</h3><blockquote>
+<p><code>!idt</code> 显示中段表<br><code>!idt -a</code>  显示所有中段表</p>
+<p><code>KV</code> 显示栈</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Kernel </tag>
+            
+        </tags>
+        
+    </entry>
+    
   
   
 </search>

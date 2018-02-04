@@ -403,6 +403,74 @@
 
 
   
+    <article id="post-中断" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/08/中断/" class="article-date">
+      <time datetime="2017-03-08T08:00:00.000Z" itemprop="datePublished">2017-03-08</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/08/中断/">中断</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <blockquote>
+<p>用<code>int xx</code>调用中断,从 三环 进入 0环操作<br>门用 <code>Iret</code> 操作 进行从 0环 返回 三环  </p>
+</blockquote>
+<h2 id="中断调用过程"><a href="#中断调用过程" class="headerlink" title="中断调用过程:"></a>中断调用过程:</h2><blockquote>
+<p>3环 传入<code>API</code>的下标 -&gt; 调用 <code>int 2E</code> 切换到0环 -&gt;<br>在<code>2E</code>中断中 派发函数 (<code>call FunAry[eax]</code>的形式调用相应的系统API) -&gt;<br>进行API调用之后, 利用<code>iRet</code> 返回三环<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/03/08/中断/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
   
 </div>
       <footer id="footer">
