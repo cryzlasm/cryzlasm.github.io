@@ -84,7 +84,7 @@
 <li>获取<code>PsTerminateSystemThread</code>地址:<code>MmGetSystemRoutineAddress</code></li>
 <li>搜索<code>E8</code>特征码,获取<code>PspTerminateThreadByPointer</code>地址</li>
 <li><code>PsLookupProcessByProcessId</code> 通过 <code>PID</code>获得<code>EPROCESS</code></li>
-<li>遍历线程</li>
+<li>遍历线程<a id="more"></a></li>
 <li>结束线程</li>
 </ol>
 </blockquote>
@@ -95,7 +95,6 @@
 <li>通过对象获得名称  (<code>ObQueryNameString</code>)</li>
 </ol>
 </blockquote>
-<a id="more"></a>
 <hr>
 <h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><table>
 <thead>

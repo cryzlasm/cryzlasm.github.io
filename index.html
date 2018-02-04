@@ -368,17 +368,7 @@
 <li>获取<code>PsTerminateSystemThread</code>地址:<code>MmGetSystemRoutineAddress</code></li>
 <li>搜索<code>E8</code>特征码,获取<code>PspTerminateThreadByPointer</code>地址</li>
 <li><code>PsLookupProcessByProcessId</code> 通过 <code>PID</code>获得<code>EPROCESS</code></li>
-<li>遍历线程</li>
-<li>结束线程</li>
-</ol>
-</blockquote>
-<h2 id="查找指定文件的句柄"><a href="#查找指定文件的句柄" class="headerlink" title="查找指定文件的句柄"></a>查找指定文件的句柄</h2><blockquote>
-<ol>
-<li>遍历所有进程的所有句柄  (EProcess.ObjectTable(_HANDLE_TABLE类型))  </li>
-<li>通过句柄获得对象  (<code>PsLookupProcessByProcessId</code>)</li>
-<li>通过对象获得名称  (<code>ObQueryNameString</code>)</li>
-</ol>
-</blockquote>
+<li>遍历线程
           
       
     </div>
