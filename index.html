@@ -362,7 +362,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
+              <hr>
 <h2 id="结束线程"><a href="#结束线程" class="headerlink" title="结束线程"></a>结束线程</h2><blockquote>
 <ol>
 <li>获取<code>PsTerminateSystemThread</code>地址:<code>MmGetSystemRoutineAddress</code></li>
@@ -379,59 +379,7 @@
 <li>通过对象获得名称  (<code>ObQueryNameString</code>)</li>
 </ol>
 </blockquote>
-<hr>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">API名称</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>MmGetSystemRoutineAddress</code></td>
-<td style="text-align:left">获取导出</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>IoThreadToProcess</code></td>
-<td style="text-align:left">通过线程获得<code>Eprocess</code></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>ZwDuplicateObject</code></td>
-<td style="text-align:left">拷贝目标进程句柄到本进程句柄表</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PspCidTable</code></td>
-<td style="text-align:left">全局进程,线程表</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>KeStackAttachProcess</code></td>
-<td style="text-align:left">切换CR3与句柄表</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>KeUnstackDetachProcess</code></td>
-<td style="text-align:left">还原CR3与句柄表</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>ZwClose</code></td>
-<td style="text-align:left">用于关闭句柄</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>ObQueryNameString</code></td>
-<td style="text-align:left">通过对象查名称</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>ZwQuerySystemInformation</code></td>
-<td style="text-align:left">用于查询系统所有信息(由参数一决定)</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h2><blockquote>
-<p>64位的, 线程回调表,最大为64项  </p>
-<p>防止别人HOOK 结束进程和结束线程, 去WRK 看创建进程和创建线程API的实现,自己手动实现  </p>
-</blockquote>
-
+          
       
     </div>
     
@@ -444,6 +392,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/03/16/强删文件/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
