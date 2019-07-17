@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Yzlong">
+
+
+
+<meta name="description" content="原文链接:http://blog.csdn.net/ameyume/article/details/6138488  摘要: 创建对话框 一个对话框一般是一个出现在当前Activity之上的一个小窗口. 处于下面的Activity失去焦点, 对话框接受所有的用户交互. 对话框一般用于提示信息和与当前应用程序直接相关的小功能.Android API 支持下列类型 ...">
+<meta name="keywords" content="开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&lt;转载&gt;Android Dialog用法">
+<meta property="og:url" content="http://cryzlasm.github.io/2017/04/03/Android Dialog用法/index.html">
+<meta property="og:site_name" content="Yzlong-Blog">
+<meta property="og:description" content="原文链接:http://blog.csdn.net/ameyume/article/details/6138488  摘要: 创建对话框 一个对话框一般是一个出现在当前Activity之上的一个小窗口. 处于下面的Activity失去焦点, 对话框接受所有的用户交互. 对话框一般用于提示信息和与当前应用程序直接相关的小功能.Android API 支持下列类型 ...">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201101/14/0_1294984187givJ.gif">
+<meta property="og:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201101/14/0_12949843080emn.gif">
+<meta property="og:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201101/14/0_1294984388m2xV.gif">
+<meta property="og:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201101/14/0_1294984471H9p8.gif">
+<meta property="og:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201101/14/0_1294984568Ys76.gif">
+<meta property="og:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+<meta property="og:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+<meta property="og:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+<meta property="og:updated_time" content="2019-07-17T09:05:26.850Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&lt;转载&gt;Android Dialog用法">
+<meta name="twitter:description" content="原文链接:http://blog.csdn.net/ameyume/article/details/6138488  摘要: 创建对话框 一个对话框一般是一个出现在当前Activity之上的一个小窗口. 处于下面的Activity失去焦点, 对话框接受所有的用户交互. 对话框一般用于提示信息和与当前应用程序直接相关的小功能.Android API 支持下列类型 ...">
+<meta name="twitter:image" content="http://static.blog.csdn.net/images/save_snippets.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Yzlong-Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>&lt;转载&gt;Android Dialog用法 | Yzlong-Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yzlong</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yzlong5@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/cryzlasm" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARM/">ARM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Mods/">C#_Mods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FunCap/">FunCap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCC/">GCC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA插件/">IDA插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA脚本笔记/">IDA脚本笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA远程调试/">IDA远程调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Makefile/">Makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollvm/">ollvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python笔记/">python笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全局热键/">全局热键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小众/">小众</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚表/">虚表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.anquanke.com">安全客</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://bbs.pediy.com">看雪论坛</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.freebuf.com">FreeBuf</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一个初入&#34;安全&#34;行业的小学生一枚, 现为一名小小的&#34;病毒分析员&#34;.</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yzlong</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yzlong</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yzlong5@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/cryzlasm" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android Dialog用法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/03/Android Dialog用法/" class="article-date">
+      <time datetime="2017-04-03T23:17:16.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &lt;转载&gt;Android Dialog用法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发/">开发</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>原文链接:<a href="http://blog.csdn.net/ameyume/article/details/6138488" target="_blank" rel="noopener">http://blog.csdn.net/ameyume/article/details/6138488</a></p>
+<div id="article_content" class="article_content">
+<div><span style="color: #ff0000;">摘要</span>: 创建对话框 一个对话框一般是一个出现在当前Activity之上的一个小窗口. 处于下面的Activity失去焦点, 对话框接受所有的用户交互. 对话框一般用于提示信息和与当前应用程序直接相关的小功能.Android API 支持下列类型 ...</div>
+<a id="more"></a>       <!-- 这里是标记在标签上展示多少行 -->
+<div><strong>创建对话框<br></strong>　　一个对话框一般是一个出现在当前Activity之上的一个小窗口. 处于下面的Activity失去焦点, 对话框接受所有的用户交互. 对话框一般用于提示信息和与当前应用程序直接相关的小功能.<br>　　Android API 支持下列类型的对话框对象:<br>　　警告对话框 AlertDialog:&nbsp; 一个可以有0到3个按钮, 一个单选框或复选框的列表的对话框. 警告对话框可以创建大多数的交互界面, 是推荐的类型.<br>　　进度对话框 ProgressDialog:&nbsp; 显示一个进度环或者一个进度条. 由于它是AlertDialog的扩展, 所以它也支持按钮.<br>　　日期选择对话框 DatePickerDialog:&nbsp; 让用户选择一个日期.<br>　　时间选择对话框 TimePickerDialog:&nbsp; 让用户选择一个时间.<br>　　如果你希望自定义你的对话框, 可以扩展Dialog类.<br>　　Showing a Dialog 显示对话框<br>　　一个对话框总是被创建和显示为一个Activity的一部分. 你应该在Activity的onCreateDialog(int)中创建对话框. 当你使用这个回调函数时,Android系统自动管理每个对话框的状态并将它们和Activity连接, 将Activity变为对话框的"所有者". 这样,每个对话框从Activity继承一些属性. 例如,当一个对话框打开时, MENU键会显示Activity的菜单, 音量键会调整Activity当前使用的音频流的音量.<br>　　注意: 如果你希望在onCreateDialog()方法之外创建对话框, 它将不会依附在Activity上. 你可以使用setOwnerActivity(Activity)来将它依附在Activity上.<br>　　当你希望显示一个对话框时, 调用showDialog(int)并将对话框的id传给它.<br>　　当一个对话框第一次被请求时,Android调用onCreateDialog(int). 这里是你初始化对话框的地方. 这个回调函数传入的id和showDialog(int)相同. 创建对话框之后,将返回被创建的对象.<br>　　在对话框被显示之前,Android还会调用onPrepareDialog(int, Dialog). 如果你希望每次显示对话框时有动态更改的内容, 那么就改写这个函数. 该函数在每次一个对话框打开时都调用. 如果你不定义该函数,则对话框每次打开都是一样的. 该函数也会传入对话框的id以及你在onCreateDialog()中创建的Dialog对象.<br>　　最好的定义onCreateDialog(int) 和onPrepareDialog(int, Dialog) 的方法就是使用一个switch语句来检查传入的id. 每个case创建相应的对话框. 例如, 一个游戏使用两个对话框: 一个来指示游戏暂停,另一个指示游戏结束. 首先, 为它们定义ID:static final int DIALOG_PAUSED_ID = 0;<br>static final int DIALOG_GAMEOVER_ID = 1; <br>然后, 在onCreateDialog(int)中加入一个switch语句:<br><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><span data-mod="popu_168"> <a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><div style="position: absolute; left: 481px; top: 1169px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a></span><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">protected</span><span>&nbsp;Dialog&nbsp;onCreateDialog(</span><span class="keyword">int</span><span>&nbsp;id)&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;Dialog&nbsp;dialog;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">switch</span><span>(id)&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case</span><span>&nbsp;DIALOG_PAUSED_ID:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;do&nbsp;the&nbsp;work&nbsp;to&nbsp;define&nbsp;the&nbsp;pause&nbsp;Dialog</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">break</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case</span><span>&nbsp;DIALOG_GAMEOVER_ID:&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;do&nbsp;the&nbsp;work&nbsp;to&nbsp;define&nbsp;the&nbsp;game&nbsp;over&nbsp;Dialog</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">break</span><span>;&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">default</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;dialog;&nbsp;&nbsp;</span></span></li><li class><span>}&nbsp;&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank" rel="noopener"><img src="http://static.blog.csdn.net/images/save_snippets.png"></a></div></div><textarea cols="50" rows="15" name="code" class="java" style="display: none;">protected Dialog onCreateDialog(int id) {
+    Dialog dialog;
+    switch(id) {
+    case DIALOG_PAUSED_ID:
+        // do the work to define the pause Dialog
+        break;
+    case DIALOG_GAMEOVER_ID:
+        // do the work to define the game over Dialog
+        break;
+    default:
+        dialog = null;
+    }
+    return dialog;
+} </textarea> </div>
+<div>　　注意: 在这个例子中, case语句为空因为定义Dialog的程序在后面会有介绍.<br>　　在需要显示对话框是, 调用showDialog(int), 传入对话框的id:<br>　　showDialog(DIALOG_PAUSED_ID);Dismissing a Dialog 解除对话框<br>　　当你准备关闭对话框时, 你可以使用dismiss()函数. 如果需要的话, 你也可以从Activity调用dismissDialog(int), 二者效果是一样的.<br>　　如果你使用onCreateDialog(int)来管理你的对话框的状态, 那么每次你的对话框被解除时, 该对话框对象的状态会被Activity保存. 如果你决定你不再需要这个对象或者需要清除对话框的状态, 那么你应该调用 removeDialog(int). 这将把所有该对象的内部引用移除, 如果该对话框在显示的话将被解除.<br>　　Using dismiss listeners 使用解除监听器<br>　　如果你希望在对话框解除时运行某些程序, 那么你应该给对话框附加一个解除监听器.<br>　　首先定义DialogInterface.OnDismissListener接口. 这个接口只有一个方法, onDismiss(DialogInterface), 该方法将在对话框解除时被调用.<br>　　然后将你的OnDismissListener实现传给setOnDismissListener().<br>　　然而,注意对话框也可以被"取消". 这是一个特殊的情形, 它意味着对话框被用户显式的取消掉. 这将在用户按下"back"键时, 或者对话框显式的调用cancel()(按下对话框的cancel按钮)时发生. 当一个对话框被取消时, OnDismissListener将仍然被通知, 但如果你希望在对话框被显示取消(而不是正常解除)时被通知, 则你应该使用setOnCancelListener()注册一个DialogInterface.OnCancelListener.<br>　　Creating an AlertDialog 创建警告对话框<br>　　An AlertDialog is an extension of the Dialog class. It is capable of constructing most dialog user interfaces and is the suggested dialog type. You should use it for dialogs that use any of the following features:<br>　　一个警告对话框是对话框的一个扩展. 它能够创建大多数对话框用户界面并且是推荐的对话框类新星. 对于需要下列任何特性的对话框,你都应该使用它:<br>　　一个标题<br>　　一条文字消息<br>　　1个-3个按钮<br>　　一个可选择的列表(单选框或者复选框)<br>　　要创建一个AlertDialog, 使用AlertDialog.Builder子类. 使用AlertDialog.Builder(Context)来得到一个Builder, 然后使用该类的公有方法来定义AlertDialog的属性. 设定好以后, 使用create()方法来获得AlertDialog对象.<br>　　下面的主题展示了如何为AlertDialog定义不同的属性, 使用AlertDialog.Builder类. 如果你使用这些示例代码, 你可以在onCreateDialog()中返回最后的Dialog对象来获得图片中对话框的效果.<br>　　Adding buttons 增加按钮</div>
+<div><img src="http://hi.csdn.net/attachment/201101/14/0_1294984187givJ.gif" alt></div>
+<div>要创建一个如图所示的窗口， 使用set...Button()方法：<br><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><span data-mod="popu_168"> <a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><div style="position: absolute; left: 481px; top: 2325px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a></span><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>AlertDialog.Builder&nbsp;builder&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;AlertDialog.Builder(</span><span class="keyword">this</span><span>);&nbsp;&nbsp;</span></span></li><li class><span>builder.setMessage(<span class="string">"Are&nbsp;you&nbsp;sure&nbsp;you&nbsp;want&nbsp;to&nbsp;exit?"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.setCancelable(<span class="keyword">false</span><span>)&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.setPositiveButton(<span class="string">"Yes"</span><span>,&nbsp;</span><span class="keyword">new</span><span>&nbsp;DialogInterface.OnClickListener()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onClick(DialogInterface&nbsp;dialog,&nbsp;</span><span class="keyword">int</span><span>&nbsp;id)&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyActivity.<span class="keyword">this</span><span>.finish();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.setNegativeButton(<span class="string">"No"</span><span>,&nbsp;</span><span class="keyword">new</span><span>&nbsp;DialogInterface.OnClickListener()&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onClick(DialogInterface&nbsp;dialog,&nbsp;</span><span class="keyword">int</span><span>&nbsp;id)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog.cancel();&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class><span>AlertDialog&nbsp;alert&nbsp;=&nbsp;builder.create();&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank" rel="noopener"><img src="http://static.blog.csdn.net/images/save_snippets.png"></a></div></div><textarea cols="50" rows="15" name="code" class="java" style="display: none;">AlertDialog.Builder builder = new AlertDialog.Builder(this);
+builder.setMessage("Are you sure you want to exit?")
+       .setCancelable(false)
+       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+                MyActivity.this.finish();
+           }
+       })
+       .setNegativeButton("No", new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+           }
+       });
+AlertDialog alert = builder.create();</textarea> </div>
+<div>首先，使用setMessage(CharSequence)为对话框增加一条消息。 然后， 开始连续调用方法， 使用setCancelable(boolean)将对话框设为不可取消（不能使用back键来取消）。对每一个按钮，使用set...Button()方法，该方法接受按钮名称和一个DialogInterface.OnClickListener，该监听器定义了当用户选择该按钮时应做的动作。<br>　　注意：对每种按钮类型，只能为AlertDialog创建一个。也就是说，一个AlertDialog不能有两个以上的"positive"按钮。这使得可能的按钮数量最多为三个：肯定、否定、中性。这些名字和实际功能没有联系，但是将帮助你记忆它们各做什么事情。</div>
+<div>Adding a list 增加列表 </div>
+<div><img src="http://hi.csdn.net/attachment/201101/14/0_12949843080emn.gif" alt></div>
+<div><strong>要创建一个具有可选项的AlertDialog，使用setItems()方法：<br></strong><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><span data-mod="popu_168"> <a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><div style="position: absolute; left: 481px; top: 2997px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a></span><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">final</span><span>&nbsp;CharSequence[]&nbsp;items&nbsp;=&nbsp;{</span><span class="string">"Red"</span><span>,&nbsp;</span><span class="string">"Green"</span><span>,&nbsp;</span><span class="string">"Blue"</span><span>};&nbsp;&nbsp;&nbsp;</span></span></li><li class><span>AlertDialog.Builder&nbsp;builder&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;AlertDialog.Builder(</span><span class="keyword">this</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>builder.setTitle(<span class="string">"Pick&nbsp;a&nbsp;color"</span><span>);&nbsp;&nbsp;</span></span></li><li class><span>builder.setItems(items,&nbsp;<span class="keyword">new</span><span>&nbsp;DialogInterface.OnClickListener()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onClick(DialogInterface&nbsp;dialog,&nbsp;</span><span class="keyword">int</span><span>&nbsp;item)&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(getApplicationContext(),&nbsp;items[item],&nbsp;Toast.LENGTH_SHORT).show();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class><span>});&nbsp;&nbsp;</span></li><li class="alt"><span>AlertDialog&nbsp;alert&nbsp;=&nbsp;builder.create();&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank" rel="noopener"><img src="http://static.blog.csdn.net/images/save_snippets.png"></a></div></div><textarea cols="50" rows="15" name="code" class="java" style="display: none;">final CharSequence[] items = {"Red", "Green", "Blue"}; 
+AlertDialog.Builder builder = new AlertDialog.Builder(this);
+builder.setTitle("Pick a color");
+builder.setItems(items, new DialogInterface.OnClickListener() {
+    public void onClick(DialogInterface dialog, int item) {
+        Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+    }
+});
+AlertDialog alert = builder.create();
+</textarea> </div>
+<div>首先增加一个标题。然后使用setItems()增加一个可选列表，该列表接受一个选项名称的列表和一个DialogInterface.OnClickListener, 后者定义了选项对应的响应。</div>
+<div><br><strong>Adding checkboxes and radio buttons 增加单选框和复选框 </strong></div>
+<div>&nbsp;<img src="http://hi.csdn.net/attachment/201101/14/0_1294984388m2xV.gif" alt></div>
+<div>要创建一个带有多选列表或者单选列表的对话框， 使用setMultiChoiceItems()和setSingleChoiceItems()方法。如果你在onCreateDialog()中创建可选择列表, Android会自动管理列表的状态. 只要activity仍然活跃, 那么对话框就会记住刚才选中的选项，但当用户退出activity时，该选择丢失。<br>　　注意: 要在你的acitivity离开和暂停时保存选择， 你必须在activity的声明周期中正确的保存和恢复设置。为了永久性保存选择，你必须使用数据存储技术中的一种。<br>　　要创建一个具有单选列表的AlertDialog，只需将一个例子中的setItems()换成 setSingleChoiceItems():</div>
+<div><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><span data-mod="popu_168"> <a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><div style="position: absolute; left: 481px; top: 3639px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a></span><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">final</span><span>&nbsp;CharSequence[]&nbsp;items&nbsp;=&nbsp;{</span><span class="string">"Red"</span><span>,&nbsp;</span><span class="string">"Green"</span><span>,&nbsp;</span><span class="string">"Blue"</span><span>};&nbsp;&nbsp;&nbsp;</span></span></li><li class><span>AlertDialog.Builder&nbsp;builder&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;AlertDialog.Builder(</span><span class="keyword">this</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>builder.setTitle(<span class="string">"Pick&nbsp;a&nbsp;color"</span><span>);&nbsp;&nbsp;</span></span></li><li class><span>builder.setSingleChoiceItems(items,&nbsp;-<span class="number">1</span><span>,&nbsp;</span><span class="keyword">new</span><span>&nbsp;DialogInterface.OnClickListener()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onClick(DialogInterface&nbsp;dialog,&nbsp;</span><span class="keyword">int</span><span>&nbsp;item)&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(getApplicationContext(),&nbsp;items[item],&nbsp;Toast.LENGTH_SHORT).show();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class><span>});&nbsp;&nbsp;</span></li><li class="alt"><span>AlertDialog&nbsp;alert&nbsp;=&nbsp;builder.create();&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank" rel="noopener"><img src="http://static.blog.csdn.net/images/save_snippets.png"></a></div></div><textarea cols="50" rows="15" name="code" class="java" style="display: none;">final CharSequence[] items = {"Red", "Green", "Blue"}; 
+AlertDialog.Builder builder = new AlertDialog.Builder(this);
+builder.setTitle("Pick a color");
+builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+    public void onClick(DialogInterface dialog, int item) {
+        Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+    }
+});
+AlertDialog alert = builder.create();</textarea> </div>
+<div>第二个参数是默认被选中的选项位置，使用“-1”来表示默认情况下不选中任何选项。</div>
+<div><br><strong>Creating a ProgressDialog 创建进度对话框 </strong></div>
+<div><img src="http://hi.csdn.net/attachment/201101/14/0_1294984471H9p8.gif" alt></div>
+<div>一个ProgressDialog(进度对话框)是AlertDialog的扩展。它可以显示一个进度的动画——进度环或者进度条。这个对话框也可以提供按钮，例如取消一个下载等。<br>　　打开一个进度对话框很简单，只需要调用 ProgressDialog.show()即可。例如，上图的对话框可以不通过onCreateDialog(int)，而直接显示：<br>　　ProgressDialog dialog = ProgressDialog.show(MyActivity.this, "",<br>　　"Loading. Please wait...", true);<br>　　第一个参数是应用程序上下文。第二个为对话框的标题（这里为空），第三个为对话框内容， 最后一个为该进度是否为不可确定的（这只跟进度条的创建有关，见下一节）。<br>　　进度对话框的默认样式为一个旋转的环。如果你希望显示进度值，请看下一节。<br>　　Showing a progress bar 显示进度条<br>　　使用一个动画进度条来显示进度：<br>　　使用 ProgressDialog(Context)构造函数来初始化一个ProgressDialog对象。<br>　　将进度样式设置为"STYLE_HORIZONTAL"，使用setProgressStyle(int)方法。并且设置其它属性，例如内容等。<br>　　在需要显示时调用show()或者从onCreateDialog(int)回调函数中返回该ProgressDialog。<br>　　你可以使用 setProgress(int)或者incrementProgressBy(int)来增加显示的进度。<br>　　例如，你的设置可能像这样：ProgressDialog progressDialog;<br>progressDialog = new ProgressDialog(mContext);<br>progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);<br>progressDialog.setMessage("Loading...");<br>progressDialog.setCancelable(false);<br>　　设置很简单。大部分创建进度对话框需要的代码是在更新它的进程中。你可能需要在一个新的线程中更新它，并使用Handler来将进度报告给Activity。如果你不熟悉使用Handler和另外的线程，请看下列例子，该例子使用了一个新的线程来更新进度。<br>　　Example ProgressDialog with a second thread 例--使用一个线程来显示进度对话框<br>　　这个例子使用一个线程来跟踪一个进程的进度（其实为从1数到100）。每当进度更新时，该线程通过Handler给主activity发送一个消息。主Activity更新ProgressDialog.package com.example.progressdialog;</div>
+<div><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><span data-mod="popu_168"> <a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><div style="position: absolute; left: 481px; top: 4659px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_5" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_5" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=5&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a></span><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.app.Activity;&nbsp;&nbsp;</span></span></li><li class><span><span class="keyword">import</span><span>&nbsp;android.app.Dialog;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.app.ProgressDialog;&nbsp;&nbsp;</span></span></li><li class><span><span class="keyword">import</span><span>&nbsp;android.os.Bundle;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.os.Handler;&nbsp;&nbsp;</span></span></li><li class><span><span class="keyword">import</span><span>&nbsp;android.os.Message;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.view.View;&nbsp;&nbsp;</span></span></li><li class><span><span class="keyword">import</span><span>&nbsp;android.view.View.OnClickListener;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.widget.Button;&nbsp;&nbsp;</span></span></li><li class><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;NotificationTest&nbsp;</span><span class="keyword">extends</span><span>&nbsp;Activity&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;</span><span class="keyword">final</span><span>&nbsp;</span><span class="keyword">int</span><span>&nbsp;PROGRESS_DIALOG&nbsp;=&nbsp;</span><span class="number">0</span><span>;&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;Button&nbsp;button;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;ProgressThread&nbsp;progressThread;&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;ProgressDialog&nbsp;progressDialog;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**&nbsp;Called&nbsp;when&nbsp;the&nbsp;activity&nbsp;is&nbsp;first&nbsp;created.&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onCreate(Bundle&nbsp;savedInstanceState)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super</span><span>.onCreate(savedInstanceState);&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setContentView(R.layout.main);&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Setup&nbsp;the&nbsp;button&nbsp;that&nbsp;starts&nbsp;the&nbsp;progress&nbsp;dialog</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button&nbsp;=&nbsp;(Button)&nbsp;findViewById(R.id.progressDialog);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.setOnClickListener(<span class="keyword">new</span><span>&nbsp;OnClickListener(){&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onClick(View&nbsp;v)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showDialog(PROGRESS_DIALOG);&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;Dialog&nbsp;onCreateDialog(</span><span class="keyword">int</span><span>&nbsp;id)&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">switch</span><span>(id)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case</span><span>&nbsp;PROGRESS_DIALOG:&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progressDialog&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;ProgressDialog(NotificationTest.</span><span class="keyword">this</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progressDialog.setMessage(<span class="string">"Loading..."</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progressThread&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;ProgressThread(handler);&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progressThread.start();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;progressDialog;&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">default</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Define&nbsp;the&nbsp;Handler&nbsp;that&nbsp;receives&nbsp;messages&nbsp;from&nbsp;the&nbsp;thread&nbsp;and&nbsp;update&nbsp;the&nbsp;progress</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final</span><span>&nbsp;Handler&nbsp;handler&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Handler()&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;handleMessage(Message&nbsp;msg)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;total&nbsp;=&nbsp;msg.getData().getInt(</span><span class="string">"total"</span><span>);&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progressDialog.setProgress(total);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(total&nbsp;&gt;=&nbsp;</span><span class="number">100</span><span>){&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismissDialog(PROGRESS_DIALOG);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progressThread.setState(ProgressThread.STATE_DONE);&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**&nbsp;Nested&nbsp;class&nbsp;that&nbsp;performs&nbsp;progress&nbsp;calculations&nbsp;(counting)&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ProgressThread&nbsp;</span><span class="keyword">extends</span><span>&nbsp;Thread&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handler&nbsp;mHandler;&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">int</span><span>&nbsp;STATE_DONE&nbsp;=&nbsp;</span><span class="number">0</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">int</span><span>&nbsp;STATE_RUNNING&nbsp;=&nbsp;</span><span class="number">1</span><span>;&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;mState;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;total;&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProgressThread(Handler&nbsp;h)&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mHandler&nbsp;=&nbsp;h;&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;run()&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mState&nbsp;=&nbsp;STATE_RUNNING;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total&nbsp;=&nbsp;<span class="number">0</span><span>;&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span><span>&nbsp;(mState&nbsp;==&nbsp;STATE_RUNNING)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread.sleep(<span class="number">100</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch</span><span>&nbsp;(InterruptedException&nbsp;e)&nbsp;{&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.e(<span class="string">"ERROR"</span><span>,&nbsp;</span><span class="string">"Thread&nbsp;Interrupted"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;msg&nbsp;=&nbsp;mHandler.obtainMessage();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bundle&nbsp;b&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;Bundle();&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.putInt(<span class="string">"total"</span><span>,&nbsp;total);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg.setData(b);&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mHandler.sendMessage(msg);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total++;&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*&nbsp;sets&nbsp;the&nbsp;current&nbsp;state&nbsp;for&nbsp;the&nbsp;thread,</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;used&nbsp;to&nbsp;stop&nbsp;the&nbsp;thread&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setState(</span><span class="keyword">int</span><span>&nbsp;state)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mState&nbsp;=&nbsp;state;&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class><span>}&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank" rel="noopener"><img src="http://static.blog.csdn.net/images/save_snippets.png"></a></div></div><textarea cols="50" rows="15" name="code" class="java" style="display: none;">import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+public class NotificationTest extends Activity {
+    static final int PROGRESS_DIALOG = 0;
+    Button button;
+    ProgressThread progressThread;
+    ProgressDialog progressDialog;
+    /** Called when the activity is first created. */
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main); 
+        // Setup the button that starts the progress dialog
+        button = (Button) findViewById(R.id.progressDialog);
+        button.setOnClickListener(new OnClickListener(){
+            public void onClick(View v) {
+                showDialog(PROGRESS_DIALOG);
+            }
+        });
+    }
+    protected Dialog onCreateDialog(int id) {
+        switch(id) {
+        case PROGRESS_DIALOG:
+            progressDialog = new ProgressDialog(NotificationTest.this);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setMessage("Loading...");
+            progressThread = new ProgressThread(handler);
+            progressThread.start();
+            return progressDialog;
+        default:
+            return null;
+        }
+    } 
+    // Define the Handler that receives messages from the thread and update the progress
+    final Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            int total = msg.getData().getInt("total");
+            progressDialog.setProgress(total);
+            if (total &gt;= 100){
+                dismissDialog(PROGRESS_DIALOG);
+                progressThread.setState(ProgressThread.STATE_DONE);
+            }
+        }
+    }; 
+    /** Nested class that performs progress calculations (counting) */
+    private class ProgressThread extends Thread {
+        Handler mHandler;
+        final static int STATE_DONE = 0;
+        final static int STATE_RUNNING = 1;
+        int mState;
+        int total;
+        ProgressThread(Handler h) {
+            mHandler = h;
+        }
+        public void run() {
+            mState = STATE_RUNNING;   
+            total = 0;
+            while (mState == STATE_RUNNING) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Log.e("ERROR", "Thread Interrupted");
+                }
+                Message msg = mHandler.obtainMessage();
+                Bundle b = new Bundle();
+                b.putInt("total", total);
+                msg.setData(b);
+                mHandler.sendMessage(msg);
+                total++;
+            }
+        }
+        /* sets the current state for the thread,
+         * used to stop the thread */
+        public void setState(int state) {
+            mState = state;
+        }
+    }
+}</textarea> </div>
+<div><strong>Creating a Custom Dialog 创建自定义对话框</strong></div>
+<div><img src="http://hi.csdn.net/attachment/201101/14/0_1294984568Ys76.gif" alt></div>
+<div>如果你想自定义一个对话框，你可以使用布局元素来创造你的对话框的布局。定义好布局后，将根View对象或者布局资源ID传给setContentView(View).<br>例如，创建如图所示的对话框：<br>创建一个xml布局custom_dialog.xml:</div>
+<div><div class="dp-highlighter bg_xhtml"><div class="bar"><div class="tools"><b>[xhtml]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><span data-mod="popu_168"> <a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><div style="position: absolute; left: 491px; top: 6453px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_6" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_6" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=6&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a></span><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span>http://schemas.android.com/apk/res/android"&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:id</span><span>=</span><span class="attribute-value">"@+id/layout_root"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:orientation</span><span>=</span><span class="attribute-value">"horizontal"</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_width</span><span>=</span><span class="attribute-value">"fill_parent"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_height</span><span>=</span><span class="attribute-value">"fill_parent"</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:padding</span><span>=</span><span class="attribute-value">"10dp"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_width</span><span>=</span><span class="attribute-value">"wrap_content"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_height</span><span>=</span><span class="attribute-value">"fill_parent"</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_marginRight</span><span>=</span><span class="attribute-value">"10dp"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_width</span><span>=</span><span class="attribute-value">"wrap_content"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_height</span><span>=</span><span class="attribute-value">"fill_parent"</span><span>&nbsp;&nbsp;</span></span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:textColor</span><span>=</span><span class="attribute-value">"#FFF"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank" rel="noopener"><img src="http://static.blog.csdn.net/images/save_snippets.png"></a></div></div><textarea cols="50" rows="15" name="code" class="xhtml" style="display: none;">http://schemas.android.com/apk/res/android"
+              android:id="@+id/layout_root"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:padding="10dp"
+              &gt;
+                   android:layout_width="wrap_content"
+               android:layout_height="fill_parent"
+               android:layout_marginRight="10dp"
+               /&gt;
+                  android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:textColor="#FFF"
+              /&gt;</textarea> </div>
+<div>该xml定义了一个LinearLayout中的一个ImageView 和一个TextView。<br>将以上布局设为对话框的content view，并且定义ImageView 和 TextView的内容：<br><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><span data-mod="popu_168"> <a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><div style="position: absolute; left: 481px; top: 6844px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_7" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_7" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=7&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a></span><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>Context&nbsp;mContext&nbsp;=&nbsp;getApplicationContext();&nbsp;&nbsp;</span></span></li><li class><span>Dialog&nbsp;dialog&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;Dialog(mContext);&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>dialog.setContentView(R.layout.custom_dialog);&nbsp;&nbsp;</span></li><li class><span>dialog.setTitle(<span class="string">"Custom&nbsp;Dialog"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>TextView&nbsp;text&nbsp;=&nbsp;(TextView)&nbsp;dialog.findViewById(R.id.text);&nbsp;&nbsp;</span></li><li class><span>text.setText(<span class="string">"Hello,&nbsp;this&nbsp;is&nbsp;a&nbsp;custom&nbsp;dialog!"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>ImageView&nbsp;image&nbsp;=&nbsp;(ImageView)&nbsp;dialog.findViewById(R.id.image);&nbsp;&nbsp;</span></li><li class><span>image.setImageResource(R.drawable.android);&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank" rel="noopener"><img src="http://static.blog.csdn.net/images/save_snippets.png"></a></div></div><textarea cols="50" rows="15" name="code" class="java" style="display: none;">Context mContext = getApplicationContext();
+Dialog dialog = new Dialog(mContext); 
+dialog.setContentView(R.layout.custom_dialog);
+dialog.setTitle("Custom Dialog");
+TextView text = (TextView) dialog.findViewById(R.id.text);
+text.setText("Hello, this is a custom dialog!");
+ImageView image = (ImageView) dialog.findViewById(R.id.image);
+image.setImageResource(R.drawable.android);</textarea> </div>
+<div>在初始化Dialog之后，使用setContentView(int)，将布局资源id传给它。现在Dialog有一个定义好的布局，你可以使用findViewById(int)来找到该元素的id并修改它的内容。<br>　　使用前面所讲的方法显示对话框。<br>　　一个使用Dialog类建立的对话框必须有一个标题。如果你不调用setTitle()，那么标题区域会保留空白。如果你不希望有一个标题，那么你应该使用AlertDialog类来创建自定义对话框。然而，由于一个AlertDialog使用AlertDialog.Builder类来建立最方便，所以你没有方法使用setContentView(int)，而是只能使用setView(View)。该方法接受一个View对象，所以你需要从xml中展开你的根View。<br>　　要展开一个xml布局，使用 getLayoutInflater() (或 getSystemService())取得LayoutInflater，然后调用inflate(int, ViewGroup)，第一个参数为布局id，而第二个参数为根view的id。现在，你可以使用展开后的布局来找到View对象并定义ImageView和TextView元素的内容。然后实例化AlertDialog.Builder并使用setView(View)来为对话框设置展开后的布局。例如：<br><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><span data-mod="popu_168"> <a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><div style="position: absolute; left: 481px; top: 7291px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_8" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_8" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=8&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a></span><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>AlertDialog.Builder&nbsp;builder;&nbsp;&nbsp;</span></span></li><li class><span>AlertDialog&nbsp;alertDialog;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>Context&nbsp;mContext&nbsp;=&nbsp;getApplicationContext();&nbsp;&nbsp;</span></li><li class><span>LayoutInflater&nbsp;inflater&nbsp;=&nbsp;(LayoutInflater)&nbsp;mContext.getSystemService(LAYOUT_INFLATER_SERVICE);&nbsp;&nbsp;</span></li><li class="alt"><span>View&nbsp;layout&nbsp;=&nbsp;inflater.inflate(R.layout.custom_dialog,&nbsp;&nbsp;</span></li><li class><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ViewGroup)&nbsp;findViewById(R.id.layout_root));&nbsp;&nbsp;</span></li><li class="alt"><span>TextView&nbsp;text&nbsp;=&nbsp;(TextView)&nbsp;layout.findViewById(R.id.text);&nbsp;&nbsp;</span></li><li class><span>text.setText(<span class="string">"Hello,&nbsp;this&nbsp;is&nbsp;a&nbsp;custom&nbsp;dialog!"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>ImageView&nbsp;image&nbsp;=&nbsp;(ImageView)&nbsp;layout.findViewById(R.id.image);&nbsp;&nbsp;</span></li><li class><span>image.setImageResource(R.drawable.android);&nbsp;&nbsp;</span></li><li class="alt"><span>builder&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;AlertDialog.Builder(mContext);&nbsp;&nbsp;</span></span></li><li class><span>builder.setView(layout);&nbsp;&nbsp;</span></li><li class="alt"><span>alertDialog&nbsp;=&nbsp;builder.create();&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank" rel="noopener"><img src="http://static.blog.csdn.net/images/save_snippets.png"></a></div></div><textarea cols="50" rows="15" name="code" class="java" style="display: none;">AlertDialog.Builder builder;
+AlertDialog alertDialog; 
+Context mContext = getApplicationContext();
+LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+View layout = inflater.inflate(R.layout.custom_dialog,
+                               (ViewGroup) findViewById(R.id.layout_root));
+TextView text = (TextView) layout.findViewById(R.id.text);
+text.setText("Hello, this is a custom dialog!");
+ImageView image = (ImageView) layout.findViewById(R.id.image);
+image.setImageResource(R.drawable.android);
+builder = new AlertDialog.Builder(mContext);
+builder.setView(layout);
+alertDialog = builder.create();</textarea> </div>
+<div>使用AlertDialog来自定义对话框，可以利用其内置特性例如按钮、选择列表、标题、图标等。</div>   
+</div>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/04/03/Android Dialog用法/">&lt;转载&gt;Android Dialog用法</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yzlong</a></p>
+        <p><span>发布时间:</span>2017-04-03, 16:17:16</p>
+        <p><span>最后更新:</span>2019-07-17, 02:05:26</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/04/03/Android Dialog用法/" title="&lt;转载&gt;Android Dialog用法">http://cryzlasm.github.io/2017/04/03/Android Dialog用法/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://cryzlasm.github.io/2017/04/03/Android Dialog用法/　　作者: Yzlong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/04/09/手工编译NDK程序/">
+                    手工编译NDK程序
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/04/02/android常用URI/">
+                    &lt;转载&gt;android 常用URI 值得记住
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"<转载>Android Dialog用法　| Yzlong-Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+   
+      <section class="gitment" id="comments">
+    <div id="gitment" class ="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: '&lt;转载&gt;Android Dialog用法',
+      owner: 'gitment',
+      repo: 'cryzlasm.github.io',
+      oauth: {
+        client_id: 'aee474ddb5a823482591',
+        client_secret: 'c0fc3d989b5d03c652deb094b4f2b7682f41f6de',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/04/09/手工编译NDK程序/" title="上一篇: 手工编译NDK程序">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/04/02/android常用URI/" title="下一篇: &lt;转载&gt;android 常用URI 值得记住">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp-委托(delegate)/">C#---委托(delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp学习笔记(1)/">C#学习笔记(1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp-注册全局热键/">C#注册全局热键</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/IDA_RemoteDbg-Scripts_FunCap/">记录IDA远程调试 + FunCap脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/2018-3-6-interview/">记一次模拟面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/06/life-and-death/">清明杂记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/12/2018-02-12-Unk/">瞎扯</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/08/Minority_Language/">记一次"小众语言"的分析翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/25/python-with/">python-with</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/24/怎么看懂和编写makefile/"><转载>怎么看懂和编写makefile</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/IDA脚本笔记/">IDA脚本笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/python3_Socket.send/">关于 python3 Socket.send bytes-Obj 问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/ollvm编译环境配置/"><转载>ollvm编译环境配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/编写IDApython的PY插件/">编写IDApython的PY插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/14/GCC生成的虚表/">GCC生成的虚表</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/JNI-Inject 注入与反调试/">JNI-Inject 注入与反调试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/19/搭建ARM调试环境/">搭建ARM调试环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/18/ARM初识/">ARM初识</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/17/Android-JNI/">Android-JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/11/Android 动态库/静态库(.a|.so)/">Android 动态库/静态库(.a|.so)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/09/手工编译NDK程序/">手工编译NDK程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/03/Android Dialog用法/"><转载>Android Dialog用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/02/android常用URI/"><转载>android 常用URI 值得记住</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/26/JAVA与C++的差异(2)/">JAVA与C++的差异(2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Java与C++的差异(1)/">Java与C++的差异(1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/Android Activity/">Android Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/Android 初识/">Android 初识</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/19/手工打包APK/">手工打包APK</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/强删文件/">强删文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/未公开API的使用/">未公开API的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/中断/">中断</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018-2019 Yzlong
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

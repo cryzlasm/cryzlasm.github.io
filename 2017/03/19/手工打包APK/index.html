@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Yzlong">
+
+
+
+<meta name="description" content="1. 设置SDK环境变量添加目录到环境变量….  当前环境为4.0的SDK, 1.8额JDK  JAVA SDK目录 %JAVA_HOME%\bin;  Android SDK根目录 %ANDROID% = Android SDK 的%Path%">
+<meta name="keywords" content="开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手工打包APK">
+<meta property="og:url" content="http://cryzlasm.github.io/2017/03/19/手工打包APK/index.html">
+<meta property="og:site_name" content="Yzlong-Blog">
+<meta property="og:description" content="1. 设置SDK环境变量添加目录到环境变量….  当前环境为4.0的SDK, 1.8额JDK  JAVA SDK目录 %JAVA_HOME%\bin;  Android SDK根目录 %ANDROID% = Android SDK 的%Path%">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/3.jpg">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/1.jpg">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/2.jpg">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/4.jpg">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/5.jpg">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/6.jpg">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/8.jpg">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/Android_Version.jpg">
+<meta property="og:updated_time" content="2019-07-17T09:05:26.846Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手工打包APK">
+<meta name="twitter:description" content="1. 设置SDK环境变量添加目录到环境变量….  当前环境为4.0的SDK, 1.8额JDK  JAVA SDK目录 %JAVA_HOME%\bin;  Android SDK根目录 %ANDROID% = Android SDK 的%Path%">
+<meta name="twitter:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/3.jpg">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Yzlong-Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>手工打包APK | Yzlong-Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yzlong</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yzlong5@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/cryzlasm" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARM/">ARM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Mods/">C#_Mods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FunCap/">FunCap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCC/">GCC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA插件/">IDA插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA脚本笔记/">IDA脚本笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA远程调试/">IDA远程调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Makefile/">Makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollvm/">ollvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python笔记/">python笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全局热键/">全局热键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小众/">小众</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚表/">虚表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.anquanke.com">安全客</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://bbs.pediy.com">看雪论坛</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.freebuf.com">FreeBuf</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一个初入&#34;安全&#34;行业的小学生一枚, 现为一名小小的&#34;病毒分析员&#34;.</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yzlong</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yzlong</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yzlong5@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/cryzlasm" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-手工打包APK" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/19/手工打包APK/" class="article-date">
+      <time datetime="2017-03-19T12:17:18.000Z" itemprop="datePublished">2017-03-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      手工打包APK
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发/">开发</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="1-设置SDK环境变量"><a href="#1-设置SDK环境变量" class="headerlink" title="1. 设置SDK环境变量"></a>1. 设置<code>SDK</code>环境变量</h2><p>添加目录到环境变量….</p>
+<blockquote>
+<p>当前环境为4.0的SDK, 1.8额JDK</p>
+</blockquote>
+<h3 id="JAVA-SDK目录"><a href="#JAVA-SDK目录" class="headerlink" title="JAVA SDK目录"></a><strong>JAVA SDK目录</strong></h3><blockquote>
+<p><code>%JAVA_HOME%\bin;</code></p>
+</blockquote>
+<h3 id="Android-SDK根目录"><a href="#Android-SDK根目录" class="headerlink" title="Android SDK根目录"></a><strong>Android SDK根目录</strong></h3><blockquote>
+<p><code>%ANDROID%</code> = <code>Android SDK 的%Path%</code></p>
+</blockquote>
+<a id="more"></a>       <!-- 这里是标记在标签上展示多少行 -->
+<h3 id="sdk工具目录"><a href="#sdk工具目录" class="headerlink" title="sdk工具目录"></a><strong>sdk工具目录</strong></h3><blockquote>
+<p><code>%ANDROID%\sdk\tools;</code><br><code>%ANDROID%\platform-tools;</code><br><code>%ANDROID%\build-tools\23.0.1;</code>对应版本号的目录</p>
+</blockquote>
+<hr>
+<h2 id="2-利用命令行创建Android工程"><a href="#2-利用命令行创建Android工程" class="headerlink" title="2. 利用命令行创建Android工程"></a>2. 利用命令行创建<code>Android</code>工程</h2><blockquote>
+<p>命令: <code>android create project -n Test -t android-14 -p DstPath -k org.test.test -a test</code><br><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/3.jpg" alt="编译命令"></p>
+</blockquote>
+<p><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/1.jpg" alt="命令参数"></p>
+<h3 id="android-create-project-的参数"><a href="#android-create-project-的参数" class="headerlink" title="android create project 的参数"></a>android create project 的参数</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">命令解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-n --name</code></td>
+<td align="left">工程名称</td>
+</tr>
+<tr>
+<td align="left"><code>-t --target</code></td>
+<td align="left">项目编译的目标<code>Android</code>版本,详情见<strong>查看安卓版本</strong></td>
+</tr>
+<tr>
+<td align="left"><code>-p --path</code></td>
+<td align="left">生成的目标目录</td>
+</tr>
+<tr>
+<td align="left"><code>-k --package</code></td>
+<td align="left">指定项目的包名</td>
+</tr>
+<tr>
+<td align="left"><code>-a --activity</code></td>
+<td align="left"><code>Activity</code>名称</td>
+</tr>
+<tr>
+<td align="left"><code>-g --gradle</code></td>
+<td align="left">使用<code>Gradle</code>模版</td>
+</tr>
+<tr>
+<td align="left"><code>-v --gradle-vers</code></td>
+<td align="left"><code>Gradle</code>版本</td>
+</tr>
+</tbody></table>
+<h4 id="查看安卓版本"><a href="#查看安卓版本" class="headerlink" title="查看安卓版本"></a>查看安卓版本</h4><blockquote>
+<p>可以使用<code>android.bat list targets</code>命令查看当前安装的<code>AndRoid</code>版本,(ID或者名称)<br><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/2.jpg" alt="查看当前安装的版本"></p>
+</blockquote>
+<hr>
+<h2 id="3-编译资源"><a href="#3-编译资源" class="headerlink" title="3. 编译资源"></a>3. 编译资源</h2><h4 id="利用AAPT编译资源文件"><a href="#利用AAPT编译资源文件" class="headerlink" title="利用AAPT编译资源文件"></a><strong>利用<code>AAPT</code>编译资源文件</strong></h4><ol>
+<li>先切换命令行到工程目录,</li>
+<li>根目录新建一个<code>gen</code>目录,</li>
+<li>然后输入命令产生<code>R.java</code>文件<br><code>aapt package -f -m -J gen -S res -I %Android%\platforms\android-14\android.jar -M AndroidManifest.xml</code>  </li>
+</ol>
+<p><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/4.jpg" alt="AAPT参数"></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">命令解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-f</code></td>
+<td align="left">覆盖现有文件</td>
+</tr>
+<tr>
+<td align="left"><code>-m</code></td>
+<td align="left">产生包目录在<code>J</code>命令所指目录之下</td>
+</tr>
+<tr>
+<td align="left"><code>-J</code></td>
+<td align="left">指定<code>R.java</code>资源文件存放路径</td>
+</tr>
+<tr>
+<td align="left"><code>-S</code></td>
+<td align="left">从什么目录找到资源文件,可指定多个文件</td>
+</tr>
+<tr>
+<td align="left"><code>-I</code></td>
+<td align="left">指定版本平台的<code>android.jar</code>的路径</td>
+</tr>
+<tr>
+<td align="left"><code>-M</code></td>
+<td align="left">指定完整的<code>AndroidManifest.xml</code>路径包含到ZIP中</td>
+</tr>
+<tr>
+<td align="left"><code>-A</code></td>
+<td align="left">assert文件夹的路径</td>
+</tr>
+<tr>
+<td align="left"><code>-F</code></td>
+<td align="left">具体指定apk文件的输出</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="4-使用javac编译-java文件为-class"><a href="#4-使用javac编译-java文件为-class" class="headerlink" title="4. 使用javac编译.java文件为.class"></a>4. 使用<code>javac</code>编译<code>.java</code>文件为<code>.class</code></h2><p><code>javac -source 1.6 -target 1.6 -bootclasspath %Android%/platforms/android-14/android.jar -d bin gen/org/test/test/*.java src/org/test/test/*.java</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">javac       </span><br><span class="line">-source <span class="number">1.6</span>     <span class="comment">//什么版本JDK源文件</span></span><br><span class="line">-target <span class="number">1.6</span>     <span class="comment">//什么版本JDK目标文件</span></span><br><span class="line">-bootclasspath %Android%/platforms/android<span class="number">-14</span>/android.jar   <span class="comment">//编译时可能使用的环境</span></span><br><span class="line">-d bin                                                      <span class="comment">//输出目录</span></span><br><span class="line">gen/org/test/test<span class="comment">/*.java src/org/test/test/*.java           //源目录</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/5.jpg" alt="javac"></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-target</code></td>
+<td align="left">表示编译之后的class文件运行的环境版本</td>
+</tr>
+<tr>
+<td align="left"><code>-bootclasspath</code></td>
+<td align="left">表示编译需要用到的系统库</td>
+</tr>
+<tr>
+<td align="left"><code>-d</code></td>
+<td align="left">表示编译之后的class文件存放的目录</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="5-使用dx-生成-dex文件"><a href="#5-使用dx-生成-dex文件" class="headerlink" title="5. 使用dx 生成 .dex文件"></a>5. 使用<code>dx</code> 生成 <code>.dex</code>文件</h2><blockquote>
+<p><code>dx</code>版本<code>dx version 1.11</code>  (<code>23.0.1目录下dx文件</code>)<br><code>dx --dex --output=bin/classes.dex bin\org\test\test</code></p>
+</blockquote>
+<blockquote>
+<p>Tips: 转换时出错了, 给<code>javac</code>编译版本从1.8转换为1.6之后转换成功</p>
+</blockquote>
+<hr>
+<h2 id="5-使用aapt生成资源包文件"><a href="#5-使用aapt生成资源包文件" class="headerlink" title="5. 使用aapt生成资源包文件"></a>5. 使用<code>aapt</code>生成资源包文件</h2><blockquote>
+<p>根目录新建<code>assets</code>文件夹<br><code>aapt package -f -A assets -S res -I %Android%/platforms/android-14/android.jar -M AndroidManifest.xml -F bin/test</code></p>
+</blockquote>
+<hr>
+<h2 id="6-打包一个未签名的APK"><a href="#6-打包一个未签名的APK" class="headerlink" title="6.打包一个未签名的APK"></a>6.打包一个未签名的APK</h2><h4 id="解决apkbuilder不存在的问题"><a href="#解决apkbuilder不存在的问题" class="headerlink" title="解决apkbuilder不存在的问题"></a><strong>解决<code>apkbuilder</code>不存在的问题</strong></h4><blockquote>
+<p><code>copy android.bat apkbuilder.bat</code><br>修改<code>com.android.sdkmanager.Main</code> 成 <code>com.android.sdklib.build.ApkBuilderMain</code>  </p>
+</blockquote>
+<h4 id="产生未签名的APK"><a href="#产生未签名的APK" class="headerlink" title="产生未签名的APK"></a><strong>产生未签名的APK</strong></h4><blockquote>
+<p><code>apkbuilder 目标文件路径与文件名.apk -v -u -z 资源包文件路径与文件名 -f dex文件路径与文件名 -rf 源文件路径</code><br><strong>路径均为全路径</strong></p>
+</blockquote>
+<p><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/6.jpg" alt="Apkbuilder"></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-z</code></td>
+<td align="left">资源打包文件</td>
+</tr>
+<tr>
+<td align="left"><code>-f</code></td>
+<td align="left">类打包文件</td>
+</tr>
+<tr>
+<td align="left"><code>-rf</code></td>
+<td align="left">源代码目录</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="7-使用keytool来产生一个keystore文件"><a href="#7-使用keytool来产生一个keystore文件" class="headerlink" title="7. 使用keytool来产生一个keystore文件"></a>7. 使用<code>keytool</code>来产生一个<code>keystore</code>文件</h2><p><code>keytool -genkey -alias CR23Test -keyalg RSA -validity 20000 -keystore CR23Test.keystore</code></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-alias KeyName</code></td>
+<td align="left">表示别名</td>
+</tr>
+<tr>
+<td align="left"><code>-keyalg RSA</code></td>
+<td align="left">产生键的加密算法</td>
+</tr>
+<tr>
+<td align="left"><code>-validity 40000</code></td>
+<td align="left">有效期限4000天</td>
+</tr>
+<tr>
+<td align="left"><code>-keystore</code></td>
+<td align="left">保存到本地的文件名</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="8-签名APK"><a href="#8-签名APK" class="headerlink" title="8. 签名APK"></a>8. 签名APK</h2><p><code>jarsigner -verbose -keystore CR23Test.keystore -signedjar HelloWorld_signed.apk HelloWorld.apk CR23Test</code></p>
+<blockquote>
+<p>jarsigner -verbose<br>-keystore keystore文件名<br>-signedjar 签名后的apk名称 需签名apk名称<br> keystore中的别名（不是文件名）  </p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p> 注意：上面的keystore中的别名，一定记住不是文件名，如果写文件名就会提示<br><code>jarsigner: 找不到 xxx 的证书链。xxx 必须引用包含私有密钥和相应的公共密钥证书链的有效密钥库密钥条目。</code></p>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="9-安装APK"><a href="#9-安装APK" class="headerlink" title="9. 安装APK"></a>9. 安装APK</h2><p><code>adb install HelloWorld_signed.apk</code><br><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/8.jpg" alt="成功图"></p>
+<hr>
+<h2 id="10-卸载APK"><a href="#10-卸载APK" class="headerlink" title="10. 卸载APK"></a>10. 卸载APK</h2><p><code>adb uninstall org.test.test</code></p>
+<p>填写应用的包名</p>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h3 id="Android-版本号说明"><a href="#Android-版本号说明" class="headerlink" title="Android 版本号说明"></a><strong><code>Android</code> 版本号说明</strong></h3><blockquote>
+<p><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/Android_Version.jpg" alt="安卓版本"></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/19/手工打包APK/">手工打包APK</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yzlong</a></p>
+        <p><span>发布时间:</span>2017-03-19, 05:17:18</p>
+        <p><span>最后更新:</span>2019-07-17, 02:05:26</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/19/手工打包APK/" title="手工打包APK">http://cryzlasm.github.io/2017/03/19/手工打包APK/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://cryzlasm.github.io/2017/03/19/手工打包APK/　　作者: Yzlong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/03/20/Android 初识/">
+                    Android 初识
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/16/强删文件/">
+                    强删文件
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-设置SDK环境变量"><span class="toc-number">1.</span> <span class="toc-text">1. 设置SDK环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-SDK目录"><span class="toc-number">1.1.</span> <span class="toc-text">JAVA SDK目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-SDK根目录"><span class="toc-number">1.2.</span> <span class="toc-text">Android SDK根目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sdk工具目录"><span class="toc-number">1.3.</span> <span class="toc-text">sdk工具目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-利用命令行创建Android工程"><span class="toc-number">2.</span> <span class="toc-text">2. 利用命令行创建Android工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#android-create-project-的参数"><span class="toc-number">2.1.</span> <span class="toc-text">android create project 的参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看安卓版本"><span class="toc-number">2.1.1.</span> <span class="toc-text">查看安卓版本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-编译资源"><span class="toc-number">3.</span> <span class="toc-text">3. 编译资源</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#利用AAPT编译资源文件"><span class="toc-number">3.0.1.</span> <span class="toc-text">利用AAPT编译资源文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-使用javac编译-java文件为-class"><span class="toc-number">4.</span> <span class="toc-text">4. 使用javac编译.java文件为.class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-使用dx-生成-dex文件"><span class="toc-number">5.</span> <span class="toc-text">5. 使用dx 生成 .dex文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-使用aapt生成资源包文件"><span class="toc-number">6.</span> <span class="toc-text">5. 使用aapt生成资源包文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-打包一个未签名的APK"><span class="toc-number">7.</span> <span class="toc-text">6.打包一个未签名的APK</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决apkbuilder不存在的问题"><span class="toc-number">7.0.1.</span> <span class="toc-text">解决apkbuilder不存在的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产生未签名的APK"><span class="toc-number">7.0.2.</span> <span class="toc-text">产生未签名的APK</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-使用keytool来产生一个keystore文件"><span class="toc-number">8.</span> <span class="toc-text">7. 使用keytool来产生一个keystore文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-签名APK"><span class="toc-number">9.</span> <span class="toc-text">8. 签名APK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-安装APK"><span class="toc-number">10.</span> <span class="toc-text">9. 安装APK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-卸载APK"><span class="toc-number">11.</span> <span class="toc-text">10. 卸载APK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">12.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-版本号说明"><span class="toc-number">12.1.</span> <span class="toc-text">Android 版本号说明</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"手工打包APK　| Yzlong-Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+   
+      <section class="gitment" id="comments">
+    <div id="gitment" class ="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: '手工打包APK',
+      owner: 'gitment',
+      repo: 'cryzlasm.github.io',
+      oauth: {
+        client_id: 'aee474ddb5a823482591',
+        client_secret: 'c0fc3d989b5d03c652deb094b4f2b7682f41f6de',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/03/20/Android 初识/" title="上一篇: Android 初识">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/03/16/强删文件/" title="下一篇: 强删文件">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp-委托(delegate)/">C#---委托(delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp学习笔记(1)/">C#学习笔记(1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp-注册全局热键/">C#注册全局热键</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/IDA_RemoteDbg-Scripts_FunCap/">记录IDA远程调试 + FunCap脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/2018-3-6-interview/">记一次模拟面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/06/life-and-death/">清明杂记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/12/2018-02-12-Unk/">瞎扯</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/08/Minority_Language/">记一次"小众语言"的分析翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/25/python-with/">python-with</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/24/怎么看懂和编写makefile/"><转载>怎么看懂和编写makefile</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/IDA脚本笔记/">IDA脚本笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/python3_Socket.send/">关于 python3 Socket.send bytes-Obj 问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/ollvm编译环境配置/"><转载>ollvm编译环境配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/编写IDApython的PY插件/">编写IDApython的PY插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/14/GCC生成的虚表/">GCC生成的虚表</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/JNI-Inject 注入与反调试/">JNI-Inject 注入与反调试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/19/搭建ARM调试环境/">搭建ARM调试环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/18/ARM初识/">ARM初识</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/17/Android-JNI/">Android-JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/11/Android 动态库/静态库(.a|.so)/">Android 动态库/静态库(.a|.so)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/09/手工编译NDK程序/">手工编译NDK程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/03/Android Dialog用法/"><转载>Android Dialog用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/02/android常用URI/"><转载>android 常用URI 值得记住</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/26/JAVA与C++的差异(2)/">JAVA与C++的差异(2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Java与C++的差异(1)/">Java与C++的差异(1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/Android Activity/">Android Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/Android 初识/">Android 初识</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/19/手工打包APK/">手工打包APK</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/强删文件/">强删文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/未公开API的使用/">未公开API的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/中断/">中断</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018-2019 Yzlong
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

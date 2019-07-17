@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Yzlong">
+
+
+
+<meta name="description" content="JAVA基础 C++的成员方法(函数) 在JAVA中叫做方法C++的数据成员(属性) 在JAVA中叫做字段以下同此声明">
+<meta name="keywords" content="开发,JAVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java与C++的差异(1)">
+<meta property="og:url" content="http://cryzlasm.github.io/2017/03/24/Java与C++的差异(1)/index.html">
+<meta property="og:site_name" content="Yzlong-Blog">
+<meta property="og:description" content="JAVA基础 C++的成员方法(函数) 在JAVA中叫做方法C++的数据成员(属性) 在JAVA中叫做字段以下同此声明">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/Java/JAVA1/num.png">
+<meta property="og:updated_time" content="2019-07-17T09:05:26.846Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java与C++的差异(1)">
+<meta name="twitter:description" content="JAVA基础 C++的成员方法(函数) 在JAVA中叫做方法C++的数据成员(属性) 在JAVA中叫做字段以下同此声明">
+<meta name="twitter:image" content="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/Java/JAVA1/num.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Yzlong-Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Java与C++的差异(1) | Yzlong-Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yzlong</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yzlong5@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/cryzlasm" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARM/">ARM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Mods/">C#_Mods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FunCap/">FunCap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCC/">GCC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA插件/">IDA插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA脚本笔记/">IDA脚本笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA远程调试/">IDA远程调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Makefile/">Makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollvm/">ollvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python笔记/">python笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全局热键/">全局热键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小众/">小众</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚表/">虚表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.anquanke.com">安全客</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://bbs.pediy.com">看雪论坛</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.freebuf.com">FreeBuf</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一个初入&#34;安全&#34;行业的小学生一枚, 现为一名小小的&#34;病毒分析员&#34;.</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yzlong</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yzlong</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yzlong5@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/cryzlasm" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Java与C++的差异(1)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/24/Java与C++的差异(1)/" class="article-date">
+      <time datetime="2017-03-25T06:48:03.000Z" itemprop="datePublished">2017-03-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java与C++的差异(1)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA/">JAVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发/">开发</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><blockquote>
+<p><code>C++</code>的成员<strong>方法(函数)</strong> 在<code>JAVA</code>中叫做<strong>方法</strong><br><code>C++</code>的数据<strong>成员(属性)</strong> 在<code>JAVA</code>中叫做<strong>字段</strong><br>以下同此声明</p>
+</blockquote>
+<a id="more"></a>       <!-- 这里是标记在标签上展示多少行 -->
+<blockquote>
+<p><code>C++</code>支持全局函数,可随处定义<br><code>JAVA</code>不支持全局函数,必须用类套起来</p>
+</blockquote>
+<blockquote>
+<p><code>C++</code>导入声明头文件,进行函数引用  <code>#include XXX.h</code><br><code>JAVA</code>导入包.进行类对象的引用,<code>import packetName.ClassName.*</code></p>
+</blockquote>
+<blockquote>
+<p><code>JAVA</code>没有指针,都是引用!<br><code>JAVA</code>没有指针,都是引用!<br><code>JAVA</code>没有指针,都是引用!  </p>
+</blockquote>
+<hr>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><table>
+<thead>
+<tr>
+<th align="left">语法</th>
+<th align="left">Java</th>
+<th align="left">C++</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">大小写敏感</td>
+<td align="left">区分大小写</td>
+<td align="left">区分大小写</td>
+</tr>
+<tr>
+<td align="left">类的命名</td>
+<td align="left">首字母大写,驼峰命名</td>
+<td align="left">以<code>I</code>或<code>C</code>开头, 驼峰命名</td>
+</tr>
+<tr>
+<td align="left">程序文件名</td>
+<td align="left">以当前类名命名文件,一个文件只允许一个公有类</td>
+<td align="left">命名不要求,多个类可存于一个文件</td>
+</tr>
+<tr>
+<td align="left">程序入口</td>
+<td align="left"><code>public static void main(String args[]);</code></td>
+<td align="left"><code>int main(int argc, char* argv[]);</code></td>
+</tr>
+<tr>
+<td align="left">程序入口</td>
+<td align="left">Java程序都是从<code>Main()</code>方法开始</td>
+<td align="left">C++程序从<code>Main</code>函数开始</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><table>
+<thead>
+<tr>
+<th align="left">变量名</th>
+<th align="left">变量说明</th>
+<th align="left">作用域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">局部变量</td>
+<td align="left">在方法中定义一个局部变量</td>
+<td align="left">随函数的退出而销毁</td>
+</tr>
+<tr>
+<td align="left">实例变量</td>
+<td align="left">在实例对象时,初始化的类内字段</td>
+<td align="left">随对象的生命周期而销毁</td>
+</tr>
+<tr>
+<td align="left">类变量</td>
+<td align="left">类的静态成员字段</td>
+<td align="left">全局属性,随程序生命周期而销毁</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="构造-amp-amp-析构"><a href="#构造-amp-amp-析构" class="headerlink" title="构造&amp;&amp;析构"></a>构造&amp;&amp;析构</h2><table>
+<thead>
+<tr>
+<th align="left">JAVA</th>
+<th align="left">功能</th>
+<th align="left">C++</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">构造</td>
+<td align="left">初始化静态字段和实例字段,调用基类和字段为类实例的构造</td>
+<td align="left">构造</td>
+<td align="left">初始化数据成员,调用基类和成员变量为类实例的构造</td>
+</tr>
+<tr>
+<td align="left">析构</td>
+<td align="left">没有析构</td>
+<td align="left">析构</td>
+<td align="left">释放资源</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="原始数据类型-基本数据类型"><a href="#原始数据类型-基本数据类型" class="headerlink" title="原始数据类型(基本数据类型)"></a>原始数据类型(基本数据类型)</h3><blockquote>
+<p><code>JAVA</code>中都是有符号数,没有无符号数</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">JAVA类型名</th>
+<th align="left">类型占用大小</th>
+<th align="left">C++类型名</th>
+<th align="left">类型占用大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">byte</td>
+<td align="left">8字节</td>
+<td align="left">char</td>
+<td align="left">8字节</td>
+</tr>
+<tr>
+<td align="left">short</td>
+<td align="left">16字节</td>
+<td align="left">short</td>
+<td align="left">16字节</td>
+</tr>
+<tr>
+<td align="left">int</td>
+<td align="left">32字节</td>
+<td align="left">int</td>
+<td align="left">32字节</td>
+</tr>
+<tr>
+<td align="left">long</td>
+<td align="left">64字节</td>
+<td align="left">long long</td>
+<td align="left">64字节</td>
+</tr>
+<tr>
+<td align="left">float</td>
+<td align="left">32位浮点</td>
+<td align="left">float</td>
+<td align="left">32位浮点</td>
+</tr>
+<tr>
+<td align="left">double</td>
+<td align="left">64位浮点</td>
+<td align="left">double</td>
+<td align="left">64位浮点</td>
+</tr>
+<tr>
+<td align="left">boolean</td>
+<td align="left">1比特</td>
+<td align="left">bool</td>
+<td align="left">1字节</td>
+</tr>
+<tr>
+<td align="left">char</td>
+<td align="left">16字节Unicode字符</td>
+<td align="left">short int(wchar_t)</td>
+<td align="left">16字节宽字符</td>
+</tr>
+</tbody></table>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote>
+<p><code>JVAV</code>引用即<code>C++</code>中的智能指针的引用(引用技术为0则垃圾回收)</p>
+</blockquote>
+<blockquote>
+<p><code>JAVA</code>用法: class A = new A();<br><code>C++</code>用法: class*  A = new A();</p>
+</blockquote>
+<hr>
+<h3 id="可访问描述符"><a href="#可访问描述符" class="headerlink" title="可访问描述符"></a>可访问描述符</h3><p>Java 提供一系列可访问描述符来设定类，变量，方法和构造器的访问级别。四种访问级别如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">描述符</th>
+<th align="left">功能</th>
+<th align="left">继承方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>default</code></td>
+<td align="left">默认,仅对包可见,不给描述符默认为此。</td>
+<td align="left">可继承</td>
+</tr>
+<tr>
+<td align="left"><code>private</code></td>
+<td align="left">私有,仅对本类方法可见</td>
+<td align="left">不可继承</td>
+</tr>
+<tr>
+<td align="left"><code>public</code></td>
+<td align="left">公有,全部方法可见</td>
+<td align="left">可继承</td>
+</tr>
+<tr>
+<td align="left"><code>protected</code></td>
+<td align="left">保护,仅对本类方法课件</td>
+<td align="left">可继承</td>
+</tr>
+</tbody></table>
+<h3 id="不可访问描述符"><a href="#不可访问描述符" class="headerlink" title="不可访问描述符"></a>不可访问描述符</h3><blockquote>
+<p>Java 提供一些不可访问描述符来满足其他功能。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">描述符</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>Static</code></td>
+<td align="left">用来创造类方法和变量的。((全局的)静态方法或字段)</td>
+</tr>
+<tr>
+<td align="left"><code>Final</code></td>
+<td align="left">用来最终确定和实施类、方法和变量的。</td>
+</tr>
+<tr>
+<td align="left"><code>Abstract</code></td>
+<td align="left">用来创造不允许实例化的类和方法。</td>
+</tr>
+<tr>
+<td align="left"><code>synchronized</code> 和 <code>volatile</code></td>
+<td align="left">用来当做线的。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><blockquote>
+<p><code>JAVA</code><strong>算数运算符</strong>, <strong>关系运算符</strong>, <strong>位运算符</strong>, <strong>逻辑运算符</strong>,<strong>赋值运算符</strong>, <strong>三目条件运算符</strong>同<code>C++</code>  </p>
+</blockquote>
+<blockquote>
+<p><code>JAVA</code>新增一个位运算符<code>&gt;&gt;&gt;</code><br>功能: 右移补零运算</p>
+<blockquote>
+<p>应用: 负数 <code>&gt;&gt;&gt;</code>  清掉最高位,变为整数</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>JAVA</code>新增一个运算符:<code>instanceof</code>(类型识别,相当于<code>MFC</code>的<code>IsKindOf()</code>)<br>作用为: <strong>判断当前对象是否属于某个类的派生类</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>运算符优先级,同<code>C++</code></strong></p>
+</blockquote>
+<blockquote>
+<p><strong>转义序列,同<code>C++</code></strong>(<code>\r \b \n \b \t</code> 等)</p>
+</blockquote>
+<hr>
+<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><blockquote>
+<p><code>JAVA</code>的<code>if...else...</code> 同<code>C++</code></p>
+</blockquote>
+<blockquote>
+<p><code>JAVA</code>的循环同<code>C++</code></p>
+</blockquote>
+<ul>
+<li><input checked disabled type="checkbox"> <code>while</code>循环</li>
+<li><input checked disabled type="checkbox"> <code>do...while</code>循环</li>
+<li><input checked disabled type="checkbox"> <code>for</code>循环</li>
+</ul>
+<blockquote>
+<p><code>for</code>的新特性:<code>for</code>循环增加一个迭代器特性(针对数组):</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(数据类型 : 数据类型数组[])&#123;</span><br><span class="line">    数据类型...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方便快速迭代数组,作用为:从下标`0`依次迭代到下标`MaxCount-1`的位置</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>JAVA</code> 的<code>Switch</code> 语句 同 <code>C++</code></p>
+</blockquote>
+<blockquote>
+<p><code>JAVA</code> 的<code>continue</code> 与 <code>Break</code> 语句 同 <code>C++</code></p>
+</blockquote>
+<hr>
+<h2 id="JAVA-数字"><a href="#JAVA-数字" class="headerlink" title="JAVA 数字"></a>JAVA 数字</h2><blockquote>
+<p>所有的包装类 (<code>Integer</code>, <code>Long</code>, <code>Byte</code>, <code>Double</code>, <code>Float</code>, <code>Short</code>) 是抽象类 Number 的子类。</p>
+</blockquote>
+<h3 id="Number-数字对象"><a href="#Number-数字对象" class="headerlink" title="Number(数字对象)"></a><code>Number</code>(数字对象)</h3><p><img src="http://csdn-pic.oss-cn-shanghai.aliyuncs.com/Java/JAVA1/num.png" alt="Num继承图"></p>
+<blockquote>
+<p><code>Number</code> 的方法,请参阅<code>JAVA</code>的文档说明<br><strong>装箱与拆箱</strong>:即 <strong>临时变量的存储赋值和内容提取</strong></p>
+</blockquote>
+<h3 id="Character-字符对象"><a href="#Character-字符对象" class="headerlink" title="Character (字符对象)"></a><code>Character</code> (字符对象)</h3><blockquote>
+<p><code>Character</code> 的方法,请参阅<code>JAVA</code>的文档说明</p>
+</blockquote>
+<h3 id="String类-字符串相关操作"><a href="#String类-字符串相关操作" class="headerlink" title="String类(字符串相关操作)"></a>String类(字符串相关操作)</h3><blockquote>
+<p><code>String</code> 类的方法,请参阅<code>JAVA</code>的文档说明</p>
+</blockquote>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><blockquote>
+<p><code>JAVA</code> 数组的属性 同 <code>C++</code>(<strong>下标从0开始</strong>)<br>数组的实例则不同:<br>1.<code>数据类型[] Name = new 数据类型[数组元素个数];</code><br>2.<code>数据类型[] Name = {初始化数据1, 初始化数据2, 初始化数据3 ...};</code></p>
+</blockquote>
+<blockquote>
+<p><strong>处理数组</strong>:  </p>
+<blockquote>
+<p>当处理数组元素时，经常使用的是 loop 循环或 foreach 循环，因为一个数组中所有的元素是相同类型的并且数组的大小是已知的。<br><code>foreach</code>循环,为<code>for</code>语句的新特性(参见控制语句中<code>for</code>的新特性)</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>数组作为参数</strong>  </p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">&gt;&gt;     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">&gt;&gt;     System.out.print(array[i] + <span class="string">" "</span>);</span><br><span class="line">&gt;&gt;     &#125;</span><br><span class="line">&gt;&gt; &#125;</span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>方法的返回值为数组</strong>  </p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] reverse(<span class="keyword">int</span>[] list) &#123;</span><br><span class="line">&gt;&gt;     <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[list.length];</span><br><span class="line">&gt;&gt;     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = result.length - <span class="number">1</span>; i &lt; list.length; i++, j--) &#123;</span><br><span class="line">&gt;&gt;         result[j] = list[i];</span><br><span class="line">&gt;&gt;     &#125;</span><br><span class="line">&gt;&gt;     <span class="keyword">return</span> result;</span><br><span class="line">&gt;&gt; &#125;</span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>Arrays类</strong><br><code>java.util.Arrays</code> 中的类包含各种静态方法用于排序和搜索数组、数组的比较和填充数组元素。这些方法为所有基本类型所重载。  </p>
+<blockquote>
+<p><code>Arrays</code> 类的方法,请参阅<code>JAVA</code>的文档说明</p>
+</blockquote>
+</blockquote>
+<h2 id="JAVA-的-日期和时间"><a href="#JAVA-的-日期和时间" class="headerlink" title="JAVA 的 日期和时间"></a>JAVA 的 日期和时间</h2><blockquote>
+<p><code>Java</code> 在 <code>java.util</code> 包中提供了 <code>Date</code> 类，这个类封装了当前的日期和时间。<br><code>Date</code> 类支持两种构造函数。第一个构造函数初始化对象的当前日期和时间。  </p>
+<blockquote>
+<p><code>Date( )</code>  </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>下面的构造函数接收一个参数等于自<strong>1970年1月1日午夜</strong>起已经过的毫秒数  </p>
+<blockquote>
+<p><code>Date(long millisec)</code><br><code>Date</code> 类的方法,请参阅<code>JAVA</code>的文档说明</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>获取日期和时间字符串</strong>  </p>
+<blockquote>
+<p>在 Java 中容易得到当前的日期和时间。可以使用一个简单的 Date 对象的 toString() 方法，如下所示打印当前日期和时间：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="keyword">import</span> java.util.Date;</span><br><span class="line">&gt;&gt; <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateDemo</span> </span>&#123;</span><br><span class="line">&gt;&gt;     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">&gt;&gt;         <span class="comment">// Instantiate a Date object</span></span><br><span class="line">&gt;&gt;         Date date = <span class="keyword">new</span> Date();</span><br><span class="line">&gt;&gt;         <span class="comment">// display time and date using toString()</span></span><br><span class="line">&gt;&gt;         System.out.println(date.toString());</span><br><span class="line">&gt;&gt;     &#125;</span><br><span class="line">&gt;&gt; &#125;</span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>日期比较</strong><br>有以下三种方式来比较两个日期：  </p>
+<blockquote>
+<ul>
+<li>可以使用 getTime() 来获得自1970年1月1日午夜十二时起已经过的毫秒数，然后比较两个对象的值.  </li>
+<li>可以使用 before( ), after( ), 和 equals( ) 方法，由于12日在18日前，例如， new Date(99, 2, 12).before(new Date (99, 2, 18)) 返回值为 true.  </li>
+<li>可以使用 compareTo() 方法，这是由 Comparable 接口定义，由 Date 实现。</li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>使用 SimpleDateFormat 格式化日期</strong></p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="keyword">import</span> java.util.*;</span><br><span class="line">&gt;&gt; <span class="keyword">import</span> java.text.*;</span><br><span class="line">&gt;&gt; <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateDemo</span> </span>&#123;</span><br><span class="line">&gt;&gt;     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">&gt;&gt;         Date dNow = <span class="keyword">new</span> Date( );</span><br><span class="line">&gt;&gt;         SimpleDateFormat ft =</span><br><span class="line">&gt;&gt;         <span class="keyword">new</span> SimpleDateFormat (<span class="string">"E yyyy.MM.dd 'at' hh:mm:ss a zzz"</span>);</span><br><span class="line">&gt;&gt;         System.out.println(<span class="string">"Current Date: "</span> + ft.format(dNow));</span><br><span class="line">&gt;&gt;     &#125;</span><br><span class="line">&gt;&gt; &#125;</span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><blockquote>
+<p><strong>方法的定义与调用,同C++的函数定义与调用</strong><br><strong>重载,覆盖,隐藏</strong>均同C++<br>支持不定参,传入的是对象,可直接 <code>Obj.length</code> 获取不定参,参数个数</p>
+<blockquote>
+<p>举例: <code>modifier returnType nameOfMethod (Parameter List) { // method body }</code>  </p>
+<ul>
+<li>modifier：他定义了方法的访问类型，它是可选的。</li>
+<li>returnType：方法是可能返回一个值的。</li>
+<li>nameOfMethod：这是方法的名称。方法签名包括方法名称和参数列表。</li>
+<li>Parameter List：参数列表，它是参数的次序，类型，以及参数个数的集合。这些都是可选的，当然方法也可以没有参数。 </li>
+<li>方法体：方法体定义了这个方法是用来做什么的。 </li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>finalize方法(终结器, 即C++的析构, MFC的<code>DestroyWnd</code>)</strong>  </p>
+<blockquote>
+<p>垃圾回收(GC)机制,回收此对象之前,会调用<code>finalize()</code>回调,通知对象释放资源(关闭文件等操作)<br>一般定义:<code>protected void finalize( ) { // finalization code here }</code></p>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><blockquote>
+<p>相当于C++的 <code>fstream</code>的两个派生类:<code>ofstream</code>和<code>ifstream</code><br>输入: <code>FileInputStream</code><br>输出: <code>FileOutputStream</code><br><strong>注意: 此类对象,会抛异常,应使用<code>Try...Catch...</code>包裹</strong></p>
+</blockquote>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">try</span> &#123;</span><br><span class="line">&gt;     in = <span class="keyword">new</span> FileInputStream(<span class="string">"input.txt"</span>);</span><br><span class="line">&gt;     out = <span class="keyword">new</span> FileOutputStream(<span class="string">"output.txt"</span>);</span><br><span class="line">&gt;     <span class="keyword">int</span> c;</span><br><span class="line">&gt;     <span class="keyword">while</span> ((c = in.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">&gt;         out.write(c);</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">&gt;     <span class="keyword">if</span> (in != <span class="keyword">null</span>) &#123;</span><br><span class="line">&gt;         in.close();</span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;     <span class="keyword">if</span> (out != <span class="keyword">null</span>) &#123;</span><br><span class="line">&gt;         out.close();</span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>具体方法参见文档</p>
+</blockquote>
+<blockquote>
+<p>遍历文件夹  </p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="keyword">import</span> java.io.File;</span><br><span class="line">&gt;&gt; <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadDir</span> </span>&#123; </span><br><span class="line">&gt;&gt;     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">&gt;&gt;         File file = <span class="keyword">null</span>;</span><br><span class="line">&gt;&gt;         String[] paths;</span><br><span class="line">&gt;&gt;         <span class="keyword">try</span>&#123;</span><br><span class="line">&gt;&gt;             <span class="comment">// create new file object</span></span><br><span class="line">&gt;&gt;             file = <span class="keyword">new</span> File(<span class="string">"/tmp"</span>);</span><br><span class="line">&gt;&gt;             <span class="comment">// array of files and directory</span></span><br><span class="line">&gt;&gt;             paths = file.list();</span><br><span class="line">&gt;&gt;             <span class="comment">// for each name in the path array</span></span><br><span class="line">&gt;&gt;             <span class="keyword">for</span>(String path:paths)</span><br><span class="line">&gt;&gt;             &#123;</span><br><span class="line">&gt;&gt;             <span class="comment">// prints filename and directory name</span></span><br><span class="line">&gt;&gt;             System.out.println(path);</span><br><span class="line">&gt;&gt;             &#125;</span><br><span class="line">&gt;&gt;         &#125; <span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">&gt;&gt;             <span class="comment">// if any error occurs</span></span><br><span class="line">&gt;&gt;             e.printStackTrace();</span><br><span class="line">&gt;&gt;         &#125;</span><br><span class="line">&gt;&gt;     &#125; </span><br><span class="line">&gt;&gt; &#125;</span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><blockquote>
+<p><code>try...catch...</code>功能与用法 同C++;差异:<code>catch</code>的类型至少得是<code>Exception</code>类型<br><code>throw</code>/<code>throws</code> 同C++的功能与用法;差异:<code>throws</code> 可抛出多个异常<br><code>try...catch...finally...</code>功能与用法 同C++;  </p>
+</blockquote>
+<p>所有异常类均继承于:<code>java.lang.Exception</code><br><code>Exception</code>类含有两个子类：<code>IOException</code> 类和 <code>RuntimeException</code> 类。</p>
+<p><code>Throwable</code>的一些常用方法:</p>
+<table>
+<thead>
+<tr>
+<th align="left">SN</th>
+<th align="left">方法名</th>
+<th align="left">方法描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>public String getMessage()</code></td>
+<td align="left">返回关于发生异常的细节信息，这些信息在<code>Throwable</code>的构造函数中被初始化</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><code>public Throwable getCause()</code></td>
+<td align="left">返回发生异常的原因，由 <code>Throwable</code> 对象来表示</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"><code>public String toString()</code></td>
+<td align="left">返回与<code>getMessage()</code>的结果相联系的类的名称</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left"><code>public void printStackTrace()</code></td>
+<td align="left">打印 <code>toString()</code>跟踪错误输出流的栈地址的结果。</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left"><code>public StackTraceElement [] getStackTrace()</code></td>
+<td align="left">返回一个数组,其中包含每个元素在栈的地址。元素的索引0代表调用栈的顶部,最后一个元素表示方法调用栈的底部。</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left"><code>public Throwable fillInStackTrace()</code></td>
+<td align="left">用当前栈地址来填充 <code>Throwable</code> 对象的栈地址,添加到任何先前的栈地址信息。</td>
+</tr>
+</tbody></table>
+<p>以下几点需要注意：</p>
+<ul>
+<li><code>catch</code> 在没有 <code>try</code> 关键字的情况下是不能够出现的。</li>
+<li><code>try/catch</code> 语句块中并不是强制出现 <code>finally</code> 块。</li>
+<li><code>try</code> 语句块不能独立存在（即没有任何 <code>catch</code> 和 <code>finally</code> 块）。</li>
+<li>在 <code>try catch</code> 和 <code>finally</code> 块之间是不能出现任何代码的。</li>
+</ul>
+<h3 id="自定义的异常"><a href="#自定义的异常" class="headerlink" title="自定义的异常"></a>自定义的异常</h3><p>你可以在 Java 中创建自己的异常。编写自己的异常类，要记住以下几点：</p>
+<ul>
+<li>所有的异常必须继承自 <code>Throwable</code>。</li>
+<li>如果你想写一个自动遵守正确处理或声明规则的检测异常,需要继承 <code>Exception</code> 类。</li>
+<li>如果你想编写一个运行时异常,需要继承 <code>RuntimeException</code> 类。</li>
+</ul>
+<p>事例:<code>class MyException extends Exception{ }</code></p>
+<h3 id="常见的异常"><a href="#常见的异常" class="headerlink" title="常见的异常"></a>常见的异常</h3><blockquote>
+<p><strong>在 Java 中,可以定义两种异常和错误</strong><br>JVM 异常：这些异常/错误是由 JVM 在逻辑层上或专门抛出的。 </p>
+<blockquote>
+<p>例子： <code>NullPointerException</code>, <code>ArrayIndexOutOfBoundsException</code>, <code>ClassCastException</code>。   </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>程序性异常：这些异常是由应用程序或是编写 API 的程序员明确抛出的</p>
+<blockquote>
+<p>如：IllegalArgumentException, IllegalStateException。</p>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="关键字表"><a href="#关键字表" class="headerlink" title="关键字表"></a>关键字表</h2><p>JAVA关键字|功能<br>:-|:-|:-|:-<br>abstract    |表明类或者成员方法具有抽象属性<br>assert    |用来进行程序调试<br>boolean    |基本数据类型之一，布尔类型<br>break    |提前跳出一个块<br>byte    |基本数据类型之一，字节类型<br>case    |用在switch语句之中，表示其中的一个分支<br>catch    |用在异常处理中，用来捕捉异常<br>char    |基本数据类型之一，字符类型<br>class    |类<br>const    |保留关键字，没有具体含义<br>continue    |回到一个块的开始处<br>default    |默认，例如，用在switch语句中，表明一个默认的分支<br>do    |用在do-while循环结构中<br>double    |基本数据类型之一，双精度浮点数类型<br>else    |用在条件语句中，表明当条件不成立时的分支<br>enum    |枚举<br>extends    |表明一个类型是另一个类型的子类型，这里常见的类型有类和接口<br>final    |用来说明最终属性，表明一个类不能派生出子类，或者成员方法不能被覆盖，或者成员域的值不能被改变，用来定义常量<br>finally    |用于处理异常情况，用来声明一个基本肯定会被执行到的语句块<br>float    |基本数据类型之一，单精度浮点数类型<br>for    |一种循环结构的引导词<br>goto    |保留关键字，没有具体含义<br>if    |条件语句的引导词<br>implements    |表明一个类实现了给定的接口<br>import    |表明要访问指定的类或包<br>instanceof    |用来测试一个对象是否是指定类型的实例对象<br>int    |基本数据类型之一，整数类型<br>interface    |接口<br>long    |基本数据类型之一，长整数类型<br>native    |用来声明一个方法是由与计算机相关的语言（如C/C++/FORTRAN语言）实现的<br>new    |用来创建新实例对象<br>package    |包<br>private    |一种访问控制方式：私用模式<br>protected    |一种访问控制方式：保护模式<br>public    |一种访问控制方式：共用模式<br>return    |从成员方法中返回数据<br>short    |基本数据类型之一,短整数类型<br>static    |表明具有静态属性<br>strictfp    |用来声明FP_strict（单精度或双精度浮点数）表达式遵循IEEE 754算术规范<br>super    |表明当前对象的父类型的引用或者父类型的构造方法<br>switch    |分支语句结构的引导词<br>synchronized    |表明一段代码需要同步执行<br>this    |指向当前实例对象的引用<br>throw    |抛出一个异常<br>throws    |声明在当前定义的成员方法中所有需要抛出的异常<br>transient    |声明不用序列化的成员域<br>try    |尝试一个可能抛出异常的程序块<br>void    |声明当前成员方法没有返回值<br>volatile |表明两个或者多个变量必须同步地发生变化<br>while |用在循环结构中 </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/24/Java与C++的差异(1)/">Java与C++的差异(1)</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yzlong</a></p>
+        <p><span>发布时间:</span>2017-03-24, 23:48:03</p>
+        <p><span>最后更新:</span>2019-07-17, 02:05:26</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/24/Java与C++的差异(1)/" title="Java与C++的差异(1)">http://cryzlasm.github.io/2017/03/24/Java与C++的差异(1)/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://cryzlasm.github.io/2017/03/24/Java与C++的差异(1)/　　作者: Yzlong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/03/26/JAVA与C++的差异(2)/">
+                    JAVA与C++的差异(2)
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/20/Android Activity/">
+                    Android Activity
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA基础"><span class="toc-number">1.</span> <span class="toc-text">JAVA基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本语法"><span class="toc-number">2.</span> <span class="toc-text">基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造-amp-amp-析构"><span class="toc-number">4.</span> <span class="toc-text">构造&amp;&amp;析构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">5.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原始数据类型-基本数据类型"><span class="toc-number">5.1.</span> <span class="toc-text">原始数据类型(基本数据类型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用"><span class="toc-number">5.2.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可访问描述符"><span class="toc-number">5.3.</span> <span class="toc-text">可访问描述符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不可访问描述符"><span class="toc-number">5.4.</span> <span class="toc-text">不可访问描述符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符"><span class="toc-number">6.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制语句"><span class="toc-number">7.</span> <span class="toc-text">控制语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA-数字"><span class="toc-number">8.</span> <span class="toc-text">JAVA 数字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Number-数字对象"><span class="toc-number">8.1.</span> <span class="toc-text">Number(数字对象)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Character-字符对象"><span class="toc-number">8.2.</span> <span class="toc-text">Character (字符对象)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String类-字符串相关操作"><span class="toc-number">8.3.</span> <span class="toc-text">String类(字符串相关操作)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-number">8.4.</span> <span class="toc-text">数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA-的-日期和时间"><span class="toc-number">9.</span> <span class="toc-text">JAVA 的 日期和时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">10.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件操作"><span class="toc-number">11.</span> <span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-number">12.</span> <span class="toc-text">异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义的异常"><span class="toc-number">12.1.</span> <span class="toc-text">自定义的异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见的异常"><span class="toc-number">12.2.</span> <span class="toc-text">常见的异常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字表"><span class="toc-number">13.</span> <span class="toc-text">关键字表</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Java与C++的差异(1)　| Yzlong-Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+   
+      <section class="gitment" id="comments">
+    <div id="gitment" class ="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: 'Java与C++的差异(1)',
+      owner: 'gitment',
+      repo: 'cryzlasm.github.io',
+      oauth: {
+        client_id: 'aee474ddb5a823482591',
+        client_secret: 'c0fc3d989b5d03c652deb094b4f2b7682f41f6de',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/03/26/JAVA与C++的差异(2)/" title="上一篇: JAVA与C++的差异(2)">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/03/20/Android Activity/" title="下一篇: Android Activity">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp-委托(delegate)/">C#---委托(delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp学习笔记(1)/">C#学习笔记(1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/CSharp-注册全局热键/">C#注册全局热键</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/IDA_RemoteDbg-Scripts_FunCap/">记录IDA远程调试 + FunCap脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/17/2018-3-6-interview/">记一次模拟面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/06/life-and-death/">清明杂记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/12/2018-02-12-Unk/">瞎扯</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/08/Minority_Language/">记一次"小众语言"的分析翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/25/python-with/">python-with</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/24/怎么看懂和编写makefile/"><转载>怎么看懂和编写makefile</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/IDA脚本笔记/">IDA脚本笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/python3_Socket.send/">关于 python3 Socket.send bytes-Obj 问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/ollvm编译环境配置/"><转载>ollvm编译环境配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/编写IDApython的PY插件/">编写IDApython的PY插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/14/GCC生成的虚表/">GCC生成的虚表</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/JNI-Inject 注入与反调试/">JNI-Inject 注入与反调试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/19/搭建ARM调试环境/">搭建ARM调试环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/18/ARM初识/">ARM初识</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/17/Android-JNI/">Android-JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/11/Android 动态库/静态库(.a|.so)/">Android 动态库/静态库(.a|.so)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/09/手工编译NDK程序/">手工编译NDK程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/03/Android Dialog用法/"><转载>Android Dialog用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/02/android常用URI/"><转载>android 常用URI 值得记住</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/26/JAVA与C++的差异(2)/">JAVA与C++的差异(2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/Java与C++的差异(1)/">Java与C++的差异(1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/Android Activity/">Android Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/Android 初识/">Android 初识</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/19/手工打包APK/">手工打包APK</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/强删文件/">强删文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/未公开API的使用/">未公开API的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/中断/">中断</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018-2019 Yzlong
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
